@@ -1,7 +1,8 @@
 const express = require('express')
 const router = express.Router()
 const{
-
+getTweets,getTweet,createTweet,
+deleteTweet,updateTweet
 }= require('../controllers/tweetControllers')
 
 const requireAuth = require('../middleware/requireAuth')

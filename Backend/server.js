@@ -1,6 +1,6 @@
 require('dotenv').config()
 const express = require('express')
-const TweetRoutes = require('./routes/TweetRoutes')
+const tweetRoutes = require('./routes/tweetRoutes')
 const userRoutes = require('./routes/userRoutes')
 const mongoose = require ('mongoose')
 
@@ -15,7 +15,7 @@ app.use((req,res,next)=>{
 })
 
 //routes
-app.use("/api/tweet",workoutRoutes)
+app.use("/api/tweet",tweetRoutes)
 app.use("/api/user",userRoutes)
 
 //connect to db
