@@ -6,7 +6,6 @@ const Schema = mongoose.Schema
 const userSchema = new Schema({
     username:{
     type: String,
-    min:8,
     required: true
     },
     email:{
@@ -29,6 +28,10 @@ const userSchema = new Schema({
     if(!validator.isEmail(email)){
         throw Error ("Enter the valid Email ")
     }
+    if(!validator.isLength(password,8,100) ){
+        throw Error ("Enter the minimum 8 digit Password")
+    }
+
     
     
     const exist = await this.findOne({email})

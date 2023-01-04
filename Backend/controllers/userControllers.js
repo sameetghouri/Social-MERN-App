@@ -27,8 +27,20 @@ const signupUser = async (req,res)=>{
     }
     
 }
+//delete user
+const deleteUser= async (req,res)=>{
+    const{email}=req.body
+    
+    const user = await User.findOneAndDelete({email})
+    if(!user){
+        return res.status(404).json({error:"No user Found"})
+    }
+    res.status(200).json({mssg:"User Deleted"})
+
+}
 
 module.exports={
     loginUser,
-    signupUser
+    signupUser,
+    deleteUser
 }
