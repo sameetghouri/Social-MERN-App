@@ -1,4 +1,5 @@
 const express = require('express')
+const multer = require("multer");
 const router = express.Router()
 const{
 getTweets,getoneuserTweets,getTweet,createTweet,
@@ -15,7 +16,17 @@ router.get('/user',getoneuserTweets)
 
 router.get('/:id',getTweet)
 
-router.post('/',createTweet)
+const upload = multer({ 
+    storage: multer.diskStorage({
+        destination: function (req, file, cb) {
+          cb(null, "./PostPics");
+        },
+        filename: function (req, file, cb) {
+          cb(null, file.fieldname + "-" + Date.now() + file.originalname);
+        },
+      })
+   }).single("postpic");
+router.post('/',upload,createTweet)
 
 router.delete('/:id',deleteTweet)
 
