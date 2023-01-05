@@ -8,8 +8,7 @@ const tweetSchema = new Schema({
     required: true
     },
     tweetbody:{
-    type: String,
-    required: true
+    type: String
     },
     tweetimage: {
     type:String

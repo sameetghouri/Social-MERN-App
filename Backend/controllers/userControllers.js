@@ -3,7 +3,7 @@ const jwt = require('jsonwebtoken')
 
 
 const createToken=(_id,username)=>{
-   return jwt.sign({_id,username},process.env.SECRET,{expiresIn:'3d'}) //here id is the payload it can have multiple payloads e.g name
+   return jwt.sign({_id,username},process.env.SECRET) //here id is the payload it can have multiple payloads e.g name
 }
 //login user
 const loginUser = async (req,res)=>{

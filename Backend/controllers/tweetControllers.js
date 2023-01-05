@@ -33,15 +33,11 @@ const getTweet = async (req,res)=>{
 
 //Post a new Tweet
 const createTweet = async (req,res)=>{
-    const {tweetbody}=req.body; 
 
 
-    let emptyFields = []
-    if(!tweetbody){emptyFields.push('TweetBody')}
-     
-     if(emptyFields.length>0){
-        return res.status(400).json({error:'Please Fill the field',emptyFields})
-     }
+    if(!req.body.tweetbody && !req.file){
+        return res.status(400).json({error:'Please write the tweet or upload an image'})
+    }
     try{
         console.log(req.user)
         const user_id = req.user._id
@@ -49,8 +45,8 @@ const createTweet = async (req,res)=>{
     
     const tweet = await Tweet.create({
         tweetauthor,
-        tweetbody,
-        tweetimage: req.file.path.slice(9),
+        tweetbody: req.body?.tweetbody || null,
+        tweetimage: req.file?.path.slice(9) || null,
         user_id})
     res.status(200).json(tweet)
     }catch(error){
@@ -85,7 +81,50 @@ const updateTweet = async (req,res)=>{
     }
     res.status(200).json(tweet)
 }
+
+//likes a tweet
+const likeTweet = async (req,res)=>{
+  
+  const {id} =req.body
+    try{
+      const tweet = await Tweet.findById(id)
+      if(!tweet){
+          return res.status(404).json({error:"No tweet Found"})}
+      
+      if(tweet.likes.includes(req.user.username)){
+        return res.send({message:" you've alread reacted" })}
+        
+      await Tweet.findByIdAndUpdate(id,{likes: [...tweet.likes, req.user.username]})
+        res.send({message: "Tweet is Liked", } )
+            
+       }catch(error){
+            res.send({error, message:" error in request"})
+       }
+  }
+
+ 
+
+//comment on a tweet
+const commentTweet = async (req,res)=>{
+    try{
+        const {id} =req.body
+       const tweet = await Tweet.findById(id)
+       if(!tweet){
+        return res.status(404).json({error:"No tweet Found"})}
+          
+          await  Tweet.findByIdAndUpdate(id,{comments: [...tweet.comments,
+                {commenter:req.user.username,
+                comment:req.body.comment}]})
+            res.send({message: "Tweet is commented", } )
+            
+       }catch(error){
+            res.send({error, message:" error in request"})
+            
+       }
+    }
+
 module.exports={
     getTweets,getoneuserTweets,getTweet,
-    createTweet,deleteTweet,updateTweet
+    createTweet,deleteTweet,updateTweet,
+    likeTweet,commentTweet
 }
