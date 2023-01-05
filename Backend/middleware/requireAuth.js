@@ -12,8 +12,9 @@ const requireAuth = async (req,res,next) =>{
     const token = authorization.split(' ')[1] //at second position which is [1]
 
     try{
-        const {_id} = jwt.verify(token,process.env.SECRET)
-        req.user = await User.findOne({_id})
+        const {_id,username} = jwt.verify(token,process.env.SECRET)
+        req.user={_id,username}
+        
         next()
     } catch(error){
         console.log(error)

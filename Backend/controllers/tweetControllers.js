@@ -37,16 +37,18 @@ const createTweet = async (req,res)=>{
 
 
     let emptyFields = []
-    if(!tweetAuthor) {emptyFields.push('TweetAuther')}
     if(!tweetbody){emptyFields.push('TweetBody')}
      
      if(emptyFields.length>0){
         return res.status(400).json({error:'Please Fill the field',emptyFields})
      }
     try{
-    const user_id = req.user._id
+        console.log(req.user)
+        const user_id = req.user._id
+        const tweetauthor = req.user.username
+    
     const tweet = await Tweet.create({
-        tweetauthor:req.user.username,
+        tweetauthor,
         tweetbody,
         tweetimage: req.file.path.slice(9),
         user_id})
