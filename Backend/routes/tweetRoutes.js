@@ -3,7 +3,7 @@ const multer = require("multer");
 const router = express.Router()
 const{
 getTweets,getoneuserTweets,getTweet,createTweet,
-deleteTweet,updateTweet,likeTweet,commentTweet
+deleteTweet,updateTweet,likeTweet,commentTweet, unlikeTweet
 }= require('../controllers/tweetControllers')
 
 const requireAuth = require('../middleware/requireAuth')
@@ -33,6 +33,8 @@ router.delete('/:id',deleteTweet)
 router.patch('/update/:id',updateTweet)
 
 router.patch('/like',likeTweet)
+
+router.patch('/unlike',unlikeTweet)
 
 router.patch('/comment',commentTweet)
 

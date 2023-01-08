@@ -3,7 +3,7 @@ const express = require('express')
 const tweetRoutes = require('./routes/tweetRoutes')
 const userRoutes = require('./routes/userRoutes')
 const mongoose = require ('mongoose')
-
+mongoose.set('strictQuery',false);
 //express app
 const app =express();
 

@@ -56,6 +56,7 @@ const createTweet = async (req,res)=>{
 
 //Delete a Tweet
 const deleteTweet= async (req,res)=>{
+    try{
     const {id} =req.params
     if(!mongoose.Types.ObjectId.isValid(id)){
         return res.status(404).json({error: "Invalid Tweet id"})
@@ -65,12 +66,17 @@ const deleteTweet= async (req,res)=>{
     if(!tweet){
         return res.status(404).json({error:"No Tweet Found"})
     }
-    res.status(200).json(tweet)  
+     res.status(200).json(tweet)  
+}catch(error){
+    res.send({error, message:" error in delete request"})
+}  
 }
 
 //Update a Tweet
 const updateTweet = async (req,res)=>{
-    const {id} =req.params
+    
+    try{
+        const {id} =req.params
     if(!mongoose.Types.ObjectId.isValid(id)){
         return res.status(404).json({error: "Invalid tweet id"})
     }
@@ -79,14 +85,18 @@ const updateTweet = async (req,res)=>{
     if(!tweet){
         return res.status(404).json({error:"No Tweet Found"})
     }
-    res.status(200).json(tweet)
+     res.status(200).json(tweet)
+    }catch(error){
+        res.send({error, message:" error in update request"})
+   }
 }
 
 //likes a tweet
 const likeTweet = async (req,res)=>{
   
-  const {id} =req.body
+  
     try{
+        const {id} =req.body
       const tweet = await Tweet.findById(id)
       if(!tweet){
           return res.status(404).json({error:"No tweet Found"})}
@@ -96,12 +106,30 @@ const likeTweet = async (req,res)=>{
         
       await Tweet.findByIdAndUpdate(id,{likes: [...tweet.likes, req.user.username]})
         res.send({message: "Tweet is Liked", } )
-            
-       }catch(error){
-            res.send({error, message:" error in request"})
-       }
+      }catch(error){
+        res.send({error, message:" error in like request"})
+   }  
+      
   }
+const unlikeTweet = async (req,res)=>{
+    
+    try{
+        const {id} =req.body
+        const tweet = await Tweet.findById(id)
+        if(!tweet){
+            return res.status(404).json({error:"No tweet Found"})}
+        
+        if(tweet.likes.includes(req.user.username)){
+            await Tweet.findByIdAndUpdate(id,{likes: tweet.likes.filter((like)=>like!==req.user.username)})
+            return res.send({message: "Tweet is Unliked", } )
+          }
 
+         res.send({message:" First like the tweet" }) 
+        }catch(error){
+            res.send({error, message:" error in unlike request"})
+       }  
+         
+}
  
 
 //comment on a tweet
@@ -115,16 +143,15 @@ const commentTweet = async (req,res)=>{
           await  Tweet.findByIdAndUpdate(id,{comments: [...tweet.comments,
                 {commenter:req.user.username,
                 comment:req.body.comment}]})
-            res.send({message: "Tweet is commented", } )
-            
-       }catch(error){
-            res.send({error, message:" error in request"})
-            
-       }
+          res.send({message: "Tweet is commented", } )
+        }catch(error){
+        res.send({error, message:" error in comment request"})
+        }  
+       
     }
 
 module.exports={
     getTweets,getoneuserTweets,getTweet,
     createTweet,deleteTweet,updateTweet,
-    likeTweet,commentTweet
+    likeTweet,unlikeTweet,commentTweet
 }
