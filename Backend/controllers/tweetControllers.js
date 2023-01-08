@@ -56,8 +56,8 @@ const createTweet = async (req,res)=>{
 
 //Delete a Tweet
 const deleteTweet= async (req,res)=>{
-    try{
     const {id} =req.params
+    try{
     if(!mongoose.Types.ObjectId.isValid(id)){
         return res.status(404).json({error: "Invalid Tweet id"})
     }
@@ -74,9 +74,8 @@ const deleteTweet= async (req,res)=>{
 
 //Update a Tweet
 const updateTweet = async (req,res)=>{
-    
+    const {id} =req.params
     try{
-        const {id} =req.params
     if(!mongoose.Types.ObjectId.isValid(id)){
         return res.status(404).json({error: "Invalid tweet id"})
     }
@@ -93,10 +92,8 @@ const updateTweet = async (req,res)=>{
 
 //likes a tweet
 const likeTweet = async (req,res)=>{
-  
-  
+    const {id} =req.body
     try{
-        const {id} =req.body
       const tweet = await Tweet.findById(id)
       if(!tweet){
           return res.status(404).json({error:"No tweet Found"})}
@@ -111,10 +108,11 @@ const likeTweet = async (req,res)=>{
    }  
       
   }
+
+  //unlikes a tweet
 const unlikeTweet = async (req,res)=>{
-    
+    const {id} =req.body
     try{
-        const {id} =req.body
         const tweet = await Tweet.findById(id)
         if(!tweet){
             return res.status(404).json({error:"No tweet Found"})}
@@ -134,8 +132,8 @@ const unlikeTweet = async (req,res)=>{
 
 //comment on a tweet
 const commentTweet = async (req,res)=>{
+    const {id} =req.body
     try{
-        const {id} =req.body
        const tweet = await Tweet.findById(id)
        if(!tweet){
         return res.status(404).json({error:"No tweet Found"})}

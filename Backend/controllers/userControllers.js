@@ -28,7 +28,7 @@ const loginUser = async (req,res)=>{
     try{
         const user = await User.signup(
             username,
-            userimage = req.file.path.slice(12),
+            userimage = req.file?.path.slice(12) || null,
             email,
             password)
         const token = createToken(user._id,user.username)
