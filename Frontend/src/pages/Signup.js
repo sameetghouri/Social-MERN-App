@@ -1,6 +1,6 @@
 import { useState } from "react";
 import {useSelector, useDispatch} from "react-redux";
-
+import {LOGIN} from "../redux/counter"
 const Signup = () => {
    
     const [newname, setnewname]= useState("");
@@ -8,7 +8,7 @@ const Signup = () => {
     const [email, setemail]= useState("");
     const [error, seterror] = useState(null)
     const [isLoading, setisLoading] = useState(false)
-    
+    const dispatch = useDispatch();
 
     const submitData = async (e)=>{
           e.preventDefault();
@@ -24,9 +24,8 @@ const Signup = () => {
              method: "POST",
              headers:{'Content-Type':'application/json'},
              body: JSON.stringify(bodyContent),
-             
            });
-        const json = await response.json()
+          const json = await response.json()
 
           if (!response.ok) {
             setisLoading(false)
@@ -38,7 +37,7 @@ const Signup = () => {
           setemail('')
           setpassword('')
           setisLoading(false)
-          console.log("token:",json);
+          dispatch(LOGIN(json))
           }
           
            
@@ -52,21 +51,16 @@ const Signup = () => {
         <h1 className="mb-3 text-2xl text-center">Sign Up</h1>
 
         <form  className=" flex flex-col items-center" onSubmit={submitData}>
-        <input onChange={e => setnewname(e.target.value)} value={newname} className='block rounded-lg border  p-2 my-2'  type="text" placeholder='Full Name' />
+        <input onChange={e => setnewname(e.target.value)} value={newname} required className='block rounded-lg border  p-2 my-2'  type="text" placeholder='Full Name' />
         
-        <input onChange={e => setemail(e.target.value)} value={email} className='block rounded-lg border p-2 my-2' type="email" placeholder='Email' />
+        <input onChange={e => setemail(e.target.value)} value={email} required className='block rounded-lg border p-2 my-2' type="email" placeholder='Email' />
       
-        <input onChange={e => setpassword(e.target.value)} value={password} className='block rounded-lg border  p-2 my-2' type="password" placeholder='Password' />
+        <input onChange={e => setpassword(e.target.value)} value={password} required className='block rounded-lg border  p-2 my-2' type="password" placeholder='Password' />
         
         <button disabled={isLoading}  className='block rounded-r-full rounded-l-full border bg-sky-400 px-6 py-2 my-4 cursor-pointer transform hover:scale-110 transition duration-100' type="submit">Sign Up</button>
         
-        {error && <div className="bg-red-200 text-red-700 p-4">{error}</div>}
-        </form>                      
-                            
-                            
-                            
-                                
-                
+        {error && <div className="bg-red-200 text-red-700 p-4 text-center">{error}</div>}
+        </form>     
         </div>
 </div> 
  );

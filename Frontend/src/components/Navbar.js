@@ -1,9 +1,18 @@
 import { Link } from "react-router-dom";
 import {useSelector, useDispatch} from "react-redux";
-import {  login, logout } from "./redux/counter";
+import {  set_tweets, LOGOUT } from "../redux/counter";
 const Navbar = () => {
-    const pname = useSelector((state)=>state?.counter?.value?.usernam)
+    const token = useSelector((state)=>state?.counter?.token)
     const dispatch = useDispatch();
+
+    const handleClick = ()=>{
+        //remove user from storage
+        localStorage.removeItem('token')
+
+        //dispatch logout action
+        dispatch(LOGOUT())
+        dispatch(set_tweets([]))
+    }
     return ( 
         
             <div className=" bg-gray-100 h-screen flex flex-col items-center pt-3 fixed w-1/5 overflow-hidden">
@@ -12,12 +21,10 @@ const Navbar = () => {
             <div className='w-5/6 text-center my-2  hover:bg-gre rounded-full  px-2 py-4 shadow-md  hover:shadow-lg '><Link  to='/profile'>Profile</Link></div>
             <div className='w-5/6 text-center my-2  hover:bg-gre rounded-full px-2 py-4 shadow-md  hover:shadow-lg '><Link  to='/'>Notifications</Link></div>
             <div className='w-5/6 text-center my-2  hover:bg-gre rounded-full  px-2 py-4 shadow-md  hover:shadow-lg '><Link  to='/'>Messages</Link></div>
-            <div className='w-5/6 text-center my-2  hover:bg-gre rounded-full  px-2 py-4 shadow-md  hover:shadow-lg '><Link  to='/signin'>Sign in</Link></div>
-            {!pname && <div className='w-5/6 text-center my-2  hover:bg-gre  rounded-full px-2 py-4 shadow-md  hover:shadow-lg '><Link  to='/signup'>Sign up</Link></div>}
+            {!token && <div className='w-5/6 text-center my-2  hover:bg-gre rounded-full  px-2 py-4 shadow-md  hover:shadow-lg '><Link  to='/signin'>Log in</Link></div>}
             
-            <div className='w-5/6 text-center my-2  hover:bg-gre rounded-full  px-2 py-4 shadow-md  hover:shadow-lg '>
-            <button onClick={()=>dispatch(logout())} >Logout</button>
-            </div>
+           {token && <div className='w-5/6 text-center my-2  hover:bg-gre rounded-full  px-2 py-4 shadow-md  hover:shadow-lg '>
+            <button onClick={handleClick}>Log Out</button> </div>}
             </div>
             
             

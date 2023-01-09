@@ -1,34 +1,34 @@
 import { createSlice } from '@reduxjs/toolkit';
 
 const initialState= {
-  count:0,
-  value: [ {usernam: ""} ]
+  tweets:null,
+    token:null
 };
 export const counterSlice = createSlice({
   name: 'counter',
   initialState,
   reducers: {
    
-    login: (state,action) => {
-
-      fetch()
-
-      state.value = action.payload;
-
+    set_tweets: (state, action) => {
+      state.tweets = [...action.payload]
     },
-
-    logout: (state) => {
-      state.value = initialState.value;
+    create_tweet: (state,action) => {
+      state.tweets = [action.payload,...state.tweets];
     },
-    // setuser(state,action){
-    //   const userdata = action.payload;
-    //   return{...state,...userdata} }
-    //setuser action will update the perticular property value (role:senior enginer from junior enginer) of user object
+    delete_tweet: (state,action) => {
+      state.tweets =  state.tweets.filter((w)=> w._id!== action.payload._id)
+    },
+    LOGIN:(state,action)=>{
+      state.token = action.payload 
+    },
+    LOGOUT:(state)=>{
+      state.token = null
+    }
   },
 })
 
 // Action creators are generated for each case reducer function
-export const { increment, decrement, incrementByAmount, login, logout } = counterSlice.actions
+export const { set_tweets, create_tweet,delete_tweet,LOGIN,LOGOUT  } = counterSlice.actions
 
 export default counterSlice.reducer
 

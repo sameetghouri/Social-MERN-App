@@ -1,24 +1,30 @@
-import Home from './Home';
-import {BrowserRouter as Router, Routes, Route, } from 'react-router-dom'
-import Navbar from './Navbar';
-import Profile from './Profile';
-import Signup from './Signup';
-import Signin from './Signin';
-import { QueryClient, QueryClientProvider } from '@tanstack/react-query';
-import Createpost from './CreatePost';
+import {BrowserRouter as Router, Routes, Route, Navigate} from 'react-router-dom'
+import Home from './pages/Home';
+import Navbar from './components/Navbar';
+import Profile from './pages/Profile';
+import Signup from './pages/Signup';
+import Signin from './pages/Signin';
+import Createpost from './pages/CreatePost';
+import {useDispatch, useSelector} from "react-redux";
+import {  LOGIN } from "./redux/counter";
+import { useEffect } from 'react';
 
 
 function App() {
-  const client =new QueryClient(
-    {defaultOptions:{
-     queries:{
-       refetchOnWindowFocus:false,
-     }
-    }})
+  
+  const dispatch = useDispatch()
+  const token = useSelector((state)=>state?.counter?.token)
+
+  useEffect(()=>{
+    const token = JSON.parse(localStorage.getItem('token'))
+    if(token){
+      dispatch(LOGIN(token))
+    }
+  },[dispatch])
   
   return (
     <div className='grid grid-cols-5'>
-       <QueryClientProvider client={client}>
+       
     <Router >
     <div className='col-span-1'><Navbar/></div>
     <Routes>
@@ -32,7 +38,6 @@ function App() {
       <Route path='*' element={<div className="text-4xl text-center">Page Not Found</div>} />
     </Routes>
   </Router>
-  </QueryClientProvider>
   </div>
    
   );
