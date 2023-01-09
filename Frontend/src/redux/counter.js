@@ -2,7 +2,7 @@ import { createSlice } from '@reduxjs/toolkit';
 
 const initialState= {
   tweets:null,
-    token:null
+    user:null
 };
 export const counterSlice = createSlice({
   name: 'counter',
@@ -16,13 +16,13 @@ export const counterSlice = createSlice({
       state.tweets = [action.payload,...state.tweets];
     },
     delete_tweet: (state,action) => {
-      state.tweets =  state.tweets.filter((w)=> w._id!== action.payload._id)
+      state.tweets =  state.tweets.filter((item)=> item._id!== action.payload._id)
     },
     LOGIN:(state,action)=>{
-      state.token = action.payload 
+      state.user = action.payload 
     },
     LOGOUT:(state)=>{
-      state.token = null
+      state.user = null
     }
   },
 })

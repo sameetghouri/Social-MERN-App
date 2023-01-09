@@ -32,7 +32,7 @@ const Signup = () => {
             seterror(json.error);}
 
           if(response.ok){
-          localStorage.setItem('token',JSON.stringify(json))
+          localStorage.setItem('user',JSON.stringify(json))
           setnewname('')
           setemail('')
           setpassword('')

@@ -13,12 +13,12 @@ import { useEffect } from 'react';
 function App() {
   
   const dispatch = useDispatch()
-  const token = useSelector((state)=>state?.counter?.token)
+  const User = useSelector((state)=>state?.counter?.user)
 
   useEffect(()=>{
-    const token = JSON.parse(localStorage.getItem('token'))
-    if(token){
-      dispatch(LOGIN(token))
+    const user = JSON.parse(localStorage.getItem('user'))
+    if(user){
+      dispatch(LOGIN(user))
     }
   },[dispatch])
   

@@ -31,7 +31,7 @@ const Signin = () => {
       seterror(json.error);}
 
     if(response.ok){
-    localStorage.setItem('token',JSON.stringify(json))
+    localStorage.setItem('user',JSON.stringify(json))
     setemail('')
     setpass('')
     setisLoading(false)
