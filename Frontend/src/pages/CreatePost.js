@@ -13,7 +13,7 @@ const Createpost = () => {
         <div className="col-span-4 flex items-center justify-center bg-gradient-to-t from-emerald-300 to-emerald-400 h-screen">
                      
         <div className="w-4/5 h-2/3 shadow-lg bg-gray-200 p-10 m-4 rounded-lg flex flex-col items-center ">
-            <h1 className="m-3 text-2xl">Create Post</h1>
+            <h1 className="m-3 text-2xl">Create Tweet</h1>
             
             <form onSubmit={handlesubmit} className="flex flex-col items-center w-full">
             

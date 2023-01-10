@@ -1,5 +1,5 @@
 import { Link } from "react-router-dom";
-import {useSelector, useDispatch} from "react-redux";
+import {useSelector,useDispatch} from "react-redux";
 import {  set_tweets, LOGOUT } from "../redux/counter";
 const Navbar = () => {
     const user = useSelector((state)=>state?.counter?.user)
@@ -21,11 +21,11 @@ const Navbar = () => {
             <div className='w-5/6 text-center my-2  hover:bg-gre rounded-full  px-2 py-4 shadow-md  hover:shadow-lg '><Link  to='/profile'>Profile</Link></div>
             <div className='w-5/6 text-center my-2  hover:bg-gre rounded-full px-2 py-4 shadow-md  hover:shadow-lg '><Link  to='/'>Notifications</Link></div>
             <div className='w-5/6 text-center my-2  hover:bg-gre rounded-full  px-2 py-4 shadow-md  hover:shadow-lg '><Link  to='/'>Messages</Link></div>
-            {!user && <div className='w-5/6 text-center my-2  hover:bg-gre rounded-full  px-2 py-4 shadow-md  hover:shadow-lg '><Link  to='/signup'>Sign up</Link></div>}
-            {!user && <div className='w-5/6 text-center my-2  hover:bg-gre rounded-full  px-2 py-4 shadow-md  hover:shadow-lg '><Link  to='/signin'>Log in</Link></div>}
-            
-           {user && <div className='w-5/6 text-center my-2  hover:bg-gre rounded-full  px-2 py-4 shadow-md  hover:shadow-lg '>
+            {!user && <div className='md:hidden w-5/6 text-center my-2  hover:bg-gre rounded-full  px-2 py-4 shadow-md  hover:shadow-lg '><Link  to='/signup'>Sign up</Link></div>}
+            {!user && <div className='md:hidden w-5/6 text-center my-2  hover:bg-gre rounded-full  px-2 py-4 shadow-md  hover:shadow-lg '><Link  to='/signin'>Log in</Link></div>}
+            {user && <div className='md:hidden w-5/6 text-center my-2  hover:bg-gre rounded-full  px-2 py-4 shadow-md  hover:shadow-lg '>
             <button onClick={handleClick}>Log Out</button> </div>}
+           
             </div>
             
             

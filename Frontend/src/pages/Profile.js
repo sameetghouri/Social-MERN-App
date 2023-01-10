@@ -10,7 +10,7 @@ const Profile = () => {
   const dispatch = useDispatch()
   useEffect(()=>{
     const fetchTweets = async () =>{
-        const response = await fetch('/api/tweet',{
+        const response = await fetch('/api/tweet/profile',{
             headers:{
                 'Authorization':`Bearer ${user.token}`
             }
@@ -45,7 +45,7 @@ const Profile = () => {
             
         </div >
         <div className="text-center text-gray-800 text-lg">Your Tweets</div>
-        <div >
+        <div className='mb-2' >
         {tweets && tweets.map((item)=>(
                 <TweetDetails key={item._id} tweet={item}/>
             ))} 
