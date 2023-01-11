@@ -1,6 +1,5 @@
 import { useState } from "react";
-import { Link } from "react-router-dom";
-import {useSelector, useDispatch} from "react-redux";
+import { useDispatch} from "react-redux";
 import {LOGIN} from "../redux/counter"
 import Footer from "../components/Footer";
 const Signup = () => {
@@ -50,8 +49,8 @@ const Signup = () => {
     return ( 
       <div className="col-span-4">
       <div className="h-screen grid grid-cols-5 md:grid-cols-8">
-        <div className="col-span-5 md:col-span-6 flex items-center justify-center bg-gradient-to-t from-emerald-300 to-emerald-400 h-screen">
-        <div className="w-4/5 h-2/3 shadow-lg flex flex-col items-center justify-center bg-gray-200 p-8 rounded-lg overflow-hidden">
+        <div className="col-span-5 md:col-span-6 flex items-center justify-center bg-gradient-to-t from-emerald-300 to-emerald-400 ">
+        <div className="w-4/5 h-2/3 shadow-lg flex flex-col items-center justify-center bg-gray-200 p-8 rounded-lg overflow-auto">
         
         <h1 className="mb-3 text-2xl text-center">Sign Up</h1>
 

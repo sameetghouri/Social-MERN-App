@@ -31,21 +31,21 @@ const Profile = () => {
       <div className="h-screen grid grid-cols-5 md:grid-cols-8">
            
       <main className=" bg-emerald-300 col-span-5 md:col-span-6 flex flex-col items-center ">
-      <div className="bg-gray-200 w-11/12 mt-2 mb-2 rounded-2xl overflow-hidden shadow-lg">
+      <div className="bg-gray-200 w-11/12 mt-2 mb-2 rounded-xl overflow-hidden shadow-lg">
 
         <div className="flex flex-col bg-white rounded px-4 pt-1 overflow-hidden shadow-lg ">
           
-          <div className="w-full bg-white p-10  mt-3  rounded-lg flex flex-col items-center ">
+          <div className="w-full bg-white pt-10 pb-4  mt-3 border-2 rounded-lg flex flex-col items-center ">
             <div className="h-28 ">
             <div className=" w-24 h-24 rounded-full overflow-hidden">
               <img  src={img1} alt="DP"></img> 
               </div>
               </div>
-            <div className="mt-4 font-bold text-lg text-center">{user?.name}</div>
+            <div className="mt-4 font-bold text-3xl text-gray-900 text-center">{user?.name}</div>
             
         </div >
-        <div className="text-center text-gray-800 text-lg">Your Tweets</div>
-        <div className='mb-2' >
+        <div className="text-center mt-10 mb-3 font-semibold text-xl text-gray-800 ">Your Tweets</div>
+        <div className='' >
         {tweets && tweets.map((item)=>(
                 <TweetDetails key={item._id} tweet={item}/>
             ))} 

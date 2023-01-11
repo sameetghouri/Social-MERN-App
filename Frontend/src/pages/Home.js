@@ -38,9 +38,9 @@ const user = useSelector((state)=>state?.counter?.user)
         <img src="https://source.unsplash.com/collection/494263/800x600" className="h-full w-full shadow-md"/>
     </div> */}
 
-    <div className="flex flex-col bg-gray-200 w-11/12 mt-2 mb-2 rounded-2xl overflow-hidden">
+    <div className="flex flex-col bg-gray-200 w-11/12 mt-2 mb-2 rounded-xl overflow-hidden">
         <div className="flex flex-col  bg-white rounded px-4 pt-4 overflow-hidden shadow-lg">
-        <div className="text-center text-gray-800 my-2 font-bold text-xl">All Tweets</div>
+        <div className="text-center text-gray-800 my-2 font-bold text-2xl">All Tweets</div>
         <div >
         {tweets && tweets.map((item)=>(
                 <TweetDetails key={item._id} tweet={item}/>
