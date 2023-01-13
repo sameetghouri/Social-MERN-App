@@ -5,10 +5,12 @@ const userRoutes = require('./routes/userRoutes')
 const mongoose = require ('mongoose')
 mongoose.set('strictQuery',false);
 //express app
-const app =express();
+const app = express();
 
 //Middleware
 app.use(express.json())
+app.use(express.static('Public'))
+app.use(express.urlencoded({extended:true}))
 app.use((req,res,next)=>{
     console.log(req.path,req.method);
     next()

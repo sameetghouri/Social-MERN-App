@@ -6,7 +6,8 @@ module.exports = {
   theme: {
     extend: {
       colors:{
-        gre:"#c9c9ca",
+        gre:"#F5F5F5",
+        bre:'#327a80',
       }
     },
   },

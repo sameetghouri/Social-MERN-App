@@ -10,7 +10,7 @@ const router = express.Router()
 const upload = multer({ 
     storage: multer.diskStorage({
         destination: function (req, file, cb) {
-          cb(null, "./ProfilePics");
+          cb(null, "./Public/ProfilePics");
         },
         filename: function (req, file, cb) {
           cb(null, file.fieldname + "-" + Date.now() + file.originalname);

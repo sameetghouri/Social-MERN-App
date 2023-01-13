@@ -19,7 +19,7 @@ router.get('/:id',getTweet)
 const upload = multer({ 
     storage: multer.diskStorage({
         destination: function (req, file, cb) {
-          cb(null, "./PostPics");
+          cb(null, "./Public/PostPics");
         },
         filename: function (req, file, cb) {
           cb(null, file.fieldname + "-" + Date.now() + file.originalname);

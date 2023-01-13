@@ -25,10 +25,10 @@ const TweetDetails = ({tweet}) => {
     //     }
     // }
     return ( 
-        <div className="w-full border-2 bg-white p-5 mt-2  flex flex-col items-center " >
+        <div className="w-11/12 bg-white shadow-sm rounded-2xl py-4 mt-4 flex flex-col items-center" >
             <h3 className="">{tweet.tweetauthor}</h3>
             <p>{tweet.tweetbody}</p>
-            {/* <p>{tweet.tweetimage}</p> */}
+            {tweet.tweetimage && <img className="w-11/12 rounded-lg" src={`PostPics/${tweet.tweetimage}`} alt="tweetimage"/>}
             <p >{`Likes: ${tweet.likes.length}`}</p>
             {/* <p>{tweet.comments}</p> */}
             

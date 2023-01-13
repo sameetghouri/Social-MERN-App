@@ -46,7 +46,7 @@ const createTweet = async (req,res)=>{
     const tweet = await Tweet.create({
         tweetauthor,
         tweetbody: req.body?.tweetbody || null,
-        tweetimage: req.file?.path.slice(9) || null,
+        tweetimage: req.file?.path.slice(15) || null,
         user_id})
     res.status(200).json(tweet)
     }catch(error){

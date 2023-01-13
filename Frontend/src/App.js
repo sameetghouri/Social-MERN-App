@@ -35,7 +35,7 @@ function App() {
       <Route path='/post' element={<Createpost/>} />
       
       
-      <Route path='*' element={<div className="text-4xl text-center">Page Not Found</div>} />
+      <Route path='*' element={<div className="text-4xl text-center col-span-4 mt-10">Page Not Found</div>} />
     </Routes>
   </Router>
   </div>
