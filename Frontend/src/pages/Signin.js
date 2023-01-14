@@ -41,9 +41,9 @@ const Signin = () => {
     return ( 
      <div className="col-span-4">
      <div className="h-screen grid grid-cols-5 md:grid-cols-8">
-      <div className="col-span-5 md:col-span-6 flex flex-col items-center  bg-gre ">               
+      <div className="col-span-5 md:col-span-6 flex flex-col items-center bg-gre pt-20">               
        
-        <h1 className="my-6 text-2xl text-center">Log in</h1>
+        <h1 className="mb-6 text-2xl text-center">Log in</h1>
         <form onSubmit={handlesubmit} className="flex flex-col">  
         <input className="p-2 rounded-lg shadow-lg " type="text" placeholder='Email' value={email} required onChange = {(e) => setemail(e.target.value)}/>
         

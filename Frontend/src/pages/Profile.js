@@ -39,7 +39,7 @@ const Profile = () => {
             </div>
             <div className="mt-4 font-bold text-3xl text-gray-900 text-center">{user?.name}</div>   
             </div >
-        <h2 className="text-center mt-10 mb-3 font-semibold text-xl text-gray-800 ">Your Tweets</h2>
+        <h2 className="text-center mt-10 mb-3 font-semibold text-xl text-gray-800 ">Profile Tweets</h2>
         
         {tweets && tweets.map((item)=>(
                 <TweetDetails key={item._id} tweet={item}/>

@@ -7,6 +7,9 @@ const tweetSchema = new Schema({
     type:String,
     required: true
     },
+    tweetauthordp: {
+    type:String
+    },
     tweetbody:{
     type: String
     },

@@ -28,18 +28,18 @@ const user = useSelector((state)=>state?.counter?.user)
 },[dispatch,user])
 
     return ( 
-        <div className="col-span-4">
+        <div className="col-span-4 ">
         <div className="h-screen grid grid-cols-5 md:grid-cols-8">
              
-        <main className=" bg-gre col-span-5 md:col-span-6 flex flex-col items-center">
+        <main className=" bg-gre  col-span-5 md:col-span-6 flex flex-col items-center">
         
         
-        <h2 className="text-center text-gray-800 my-2 font-bold text-2xl">All Tweets</h2>
+        <h2 className="text-center text-gray-800 mt-4 mb-2 font-bold text-3xl">Tweets</h2>
         {tweets && tweets.map((item)=>(
                 <TweetDetails key={item._id} tweet={item}/>
             ))} 
 
-`       <div className="flex flex-col items-center bg-white">
+       <div className="flex flex-col items-center bg-white">
             <input className="py-2 px-2 w-11/12 border-2 border-gray-300 rounded-full" type="text" placeholder="Write Comment"/>
             <button className=" py-2 w-24 m-2 bg-slate-600 rounded-full cursor-pointer transform hover:scale-110 transition duration-100 text-gray-100">Post</button>
             

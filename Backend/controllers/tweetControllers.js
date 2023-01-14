@@ -45,6 +45,7 @@ const createTweet = async (req,res)=>{
     
     const tweet = await Tweet.create({
         tweetauthor,
+        tweetauthordp:req.body?.dp || null,
         tweetbody: req.body?.tweetbody || null,
         tweetimage: req.file?.path.slice(15) || null,
         user_id})
@@ -98,10 +99,10 @@ const likeTweet = async (req,res)=>{
       if(!tweet){
           return res.status(404).json({error:"No tweet Found"})}
       
-      if(tweet.likes.includes(req.user.username)){
+      if(tweet.likes.includes(req.user._id)){
         return res.send({message:" you've alread reacted" })}
         
-      await Tweet.findByIdAndUpdate(id,{likes: [...tweet.likes, req.user.username]})
+      await Tweet.findByIdAndUpdate(id,{likes: [...tweet.likes, req.user._id]})
         res.send({message: "Tweet is Liked", } )
       }catch(error){
         res.send({error, message:" error in like request"})
@@ -117,8 +118,8 @@ const unlikeTweet = async (req,res)=>{
         if(!tweet){
             return res.status(404).json({error:"No tweet Found"})}
         
-        if(tweet.likes.includes(req.user.username)){
-            await Tweet.findByIdAndUpdate(id,{likes: tweet.likes.filter((like)=>like!==req.user.username)})
+        if(tweet.likes.includes(req.user._id)){
+            await Tweet.findByIdAndUpdate(id,{likes: tweet.likes.filter((like)=>like!==req.user._id)})
             return res.send({message: "Tweet is Unliked", } )
           }
 
@@ -139,7 +140,9 @@ const commentTweet = async (req,res)=>{
         return res.status(404).json({error:"No tweet Found"})}
           
           await  Tweet.findByIdAndUpdate(id,{comments: [...tweet.comments,
-                {commenter:req.user.username,
+                {userid:req.user._id,
+                userdp:req.body?.dp || null,
+                username:req.user.username,
                 comment:req.body.comment}]})
           res.send({message: "Tweet is commented", } )
         }catch(error){

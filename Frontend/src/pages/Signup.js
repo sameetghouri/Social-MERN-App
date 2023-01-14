@@ -46,9 +46,9 @@ const Signup = () => {
     return ( 
       <div className="col-span-4">
       <div className="h-screen grid grid-cols-5 md:grid-cols-8">
-        <div className="col-span-5 md:col-span-6 flex flex-col items-center bg-gre ">
+        <div className="col-span-5 md:col-span-6 flex flex-col items-center bg-gre pt-16">
         
-        <h1 className="my-6 text-2xl text-center">Sign Up</h1>
+        <h1 className="mb-6 text-2xl text-center">Sign Up</h1>
 
         <form  className=" flex flex-col items-center" onSubmit={submitData}>
         <input onChange={e => setnewname(e.target.value)} value={newname} required className='block rounded-lg border  p-2 mb-2'  type="text" placeholder='Full Name' />

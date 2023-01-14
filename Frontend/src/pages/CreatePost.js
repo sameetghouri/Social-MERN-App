@@ -13,6 +13,7 @@ const Createpost = () => {
         e.preventDefault();
         const formData = new FormData();
         formData.append('tweetbody', tweetbody);
+        formData.append('dp', user?.dp);
         formData.append('postpic', tweetimage);
 
         axios("api/tweet", {
