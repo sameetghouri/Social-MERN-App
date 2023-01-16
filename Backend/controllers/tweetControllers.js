@@ -102,7 +102,8 @@ const likeTweet = async (req,res)=>{
       if(tweet.likes.includes(req.user._id)){
         return res.send({message:" you've alread reacted" })}
         
-      const updatedtweet = await Tweet.findByIdAndUpdate(id,{likes: [...tweet.likes, req.user._id]})
+      await Tweet.findByIdAndUpdate(id,{likes: [...tweet.likes, req.user._id]})
+      const updatedtweet = await Tweet.findById(id)
       res.status(200).json(updatedtweet)
       }catch(error){
         res.status(400).json({error:" error in update request"})
@@ -119,8 +120,10 @@ const unlikeTweet = async (req,res)=>{
             return res.status(404).json({error:"No tweet Found"})}
         
         if(tweet.likes.includes(req.user._id)){
-            const updatedtweet = await Tweet.findByIdAndUpdate(id,{likes: tweet.likes.filter((like)=>like!==req.user._id)})
-           return res.status(200).json(updatedtweet)
+            await Tweet.findByIdAndUpdate(id,{likes: tweet.likes.filter((like)=>like!==req.user._id)})
+            const updatedtweet = await Tweet.findById(id)
+            return res.status(200).json(updatedtweet)
+            
             
           }
 
@@ -140,12 +143,14 @@ const commentTweet = async (req,res)=>{
        if(!tweet){
         return res.status(404).json({error:"No tweet Found"})}
           
-          const updatedtweet = await  Tweet.findByIdAndUpdate(id,{comments: [...tweet.comments,
+         await  Tweet.findByIdAndUpdate(id,{comments: [...tweet.comments,
                 {userid:req.user._id,
                 userdp:req.body?.dp || null,
                 username:req.user.username,
                 comment:req.body.comment}]})
-          res.status(200).json(updatedtweet)
+
+        const updatedtweet = await Tweet.findById(id)
+        res.status(200).json(updatedtweet)
         }catch(error){
         res.send({error, message:" error in comment request"})
         }  

@@ -42,7 +42,7 @@ const Profile = () => {
         <h2 className="text-center mt-10 mb-3 font-semibold text-xl text-gray-800 ">Profile Tweets</h2>
         
         {tweets && tweets.map((item)=>(
-                <TweetDetails key={item._id} tweet={item}/>
+                <TweetDetails key={item._id} tweet={item} profile={true}/>
             ))} 
 
       {/* {isloading && <div className="flex mt-4 justify-center items-center gap-2 text-gray-800 text-3xl">
