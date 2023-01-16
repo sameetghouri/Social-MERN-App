@@ -39,11 +39,7 @@ const user = useSelector((state)=>state?.counter?.user)
                 <TweetDetails key={item._id} tweet={item}/>
             ))} 
 
-       <div className="flex flex-col items-center bg-white">
-            <input className="py-2 px-2 w-11/12 border-2 border-gray-300 rounded-full" type="text" placeholder="Write Comment"/>
-            <button className=" py-2 w-24 m-2 bg-slate-600 rounded-full cursor-pointer transform hover:scale-110 transition duration-100 text-gray-100">Post</button>
-            
-        </div>       
+             
 
     {/* {isloading && <div className="flex mt-4 justify-center items-center gap-2 text-gray-800 text-3xl">
                     <span className="h-8 w-8 block rounded-full animate-spin text-white "><FiAperture /></span>

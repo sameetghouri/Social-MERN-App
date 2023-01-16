@@ -69,7 +69,7 @@ const deleteTweet= async (req,res)=>{
     }
      res.status(200).json(tweet)  
 }catch(error){
-    res.send({error, message:" error in delete request"})
+    res.status(404).json({error:" error in delete request"})
 }  
 }
 
@@ -87,13 +87,13 @@ const updateTweet = async (req,res)=>{
     }
      res.status(200).json(tweet)
     }catch(error){
-        res.send({error, message:" error in update request"})
+        res.status(400).json({error:" error in update request"})
    }
 }
 
 //likes a tweet
 const likeTweet = async (req,res)=>{
-    const {id} =req.body
+    const { id } = req.params;
     try{
       const tweet = await Tweet.findById(id)
       if(!tweet){
@@ -102,25 +102,26 @@ const likeTweet = async (req,res)=>{
       if(tweet.likes.includes(req.user._id)){
         return res.send({message:" you've alread reacted" })}
         
-      await Tweet.findByIdAndUpdate(id,{likes: [...tweet.likes, req.user._id]})
-        res.send({message: "Tweet is Liked", } )
+      const updatedtweet = await Tweet.findByIdAndUpdate(id,{likes: [...tweet.likes, req.user._id]})
+      res.status(200).json(updatedtweet)
       }catch(error){
-        res.send({error, message:" error in like request"})
+        res.status(400).json({error:" error in update request"})
    }  
       
   }
 
   //unlikes a tweet
 const unlikeTweet = async (req,res)=>{
-    const {id} =req.body
+    const { id } = req.params;
     try{
         const tweet = await Tweet.findById(id)
         if(!tweet){
             return res.status(404).json({error:"No tweet Found"})}
         
         if(tweet.likes.includes(req.user._id)){
-            await Tweet.findByIdAndUpdate(id,{likes: tweet.likes.filter((like)=>like!==req.user._id)})
-            return res.send({message: "Tweet is Unliked", } )
+            const updatedtweet = await Tweet.findByIdAndUpdate(id,{likes: tweet.likes.filter((like)=>like!==req.user._id)})
+           return res.status(200).json(updatedtweet)
+            
           }
 
          res.send({message:" First like the tweet" }) 
@@ -133,18 +134,18 @@ const unlikeTweet = async (req,res)=>{
 
 //comment on a tweet
 const commentTweet = async (req,res)=>{
-    const {id} =req.body
+    const { id } = req.params;
     try{
        const tweet = await Tweet.findById(id)
        if(!tweet){
         return res.status(404).json({error:"No tweet Found"})}
           
-          await  Tweet.findByIdAndUpdate(id,{comments: [...tweet.comments,
+          const updatedtweet = await  Tweet.findByIdAndUpdate(id,{comments: [...tweet.comments,
                 {userid:req.user._id,
                 userdp:req.body?.dp || null,
                 username:req.user.username,
                 comment:req.body.comment}]})
-          res.send({message: "Tweet is commented", } )
+          res.status(200).json(updatedtweet)
         }catch(error){
         res.send({error, message:" error in comment request"})
         }  

@@ -1,7 +1,7 @@
 import { useDispatch, useSelector} from "react-redux";
-import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
-import like from '../assets/like.svg'
-import {  delete_tweet } from "../redux/counter";
+import {IoHeartOutline, IoHeartSharp} from "react-icons/io5";
+
+import {  delete_tweet, set_tweet } from "../redux/counter";
 //date fns
 import formatDistanceToNow from 'date-fns/formatDistanceToNow'
 
@@ -10,6 +10,27 @@ const TweetDetails = ({tweet}) => {
   const dispatch = useDispatch(); 
   const user = useSelector((state)=>state?.counter?.user)
     
+    const patchlike = async ()=>{
+        const response = await fetch('/api/tweet/like/'+tweet._id,{
+            method:'PATCH',
+            headers:{
+              'Authorization':`Bearer ${user.token}`}
+        })
+        const json = await response.json()
+        dispatch(set_tweet(json));
+        
+    }
+    const patchunlike = async ()=>{
+      const response = await fetch('/api/tweet/unlike/'+tweet._id,{
+          method:'PATCH',
+          headers:{
+            'Authorization':`Bearer ${user.token}`}
+      })
+      const json = await response.json()
+        dispatch(set_tweet(json));
+      
+  }
+
     // const handleclick = async ()=>{
     //     if(!user){
     //         return
@@ -39,11 +60,16 @@ const TweetDetails = ({tweet}) => {
             {tweet.tweetimage &&<div className="w-full flex justify-center" > <img className="w-full my-2 rounded-lg" src={`PostPics/${tweet.tweetimage}`} alt="tweetimage"/></div>}
             
             <div className="flex items-center mt-1">
-             {tweet.likes.includes(user.id) ? <span className='mr-3' ><img className="w-5" src={like} alt="like"/></span> : <span className='mr-3' >NotLiked </span>}
+             {tweet.likes.includes(user.id) 
+             ? <span className='ml-2 mr-3' ><IoHeartSharp className="w-6 h-6" onClick={patchunlike}/> </span> 
+             : <span className='ml-2 mr-3' ><IoHeartOutline className="w-6 h-6" onClick={patchlike}/></span>}
             <div className="text-gray-600 mr-3">{`Likes: ${tweet.likes.length}`}</div>
             <div className="text-gray-600">{`Comments: ${tweet.comments.length}`}</div>
             </div>
-            <input type='text' placeholder="Write Comment" className="mt-3 w-11/12 px-2 py-1 rounded-xl border-2 " />
+            <div className="flex items-center mt-3">
+            <input type='text' placeholder="Write Comment" className=" mr-1 w-11/12 px-2 py-1 rounded-xl border-2 " />
+            <button className=" py-1 px-4  bg-bre rounded-full cursor-pointer transform hover:scale-110 transition duration-100 text-gray-100">Post</button>
+            </div>
             {tweet.comments && tweet.comments.map((comment)=>{
               return <div className="flex items-center mt-2">
               <img src={`/ProfilePics/${comment.userdp}`} alt="DP" className="w-7 h-7 rounded-full mr-2"/>

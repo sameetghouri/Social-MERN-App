@@ -32,11 +32,11 @@ router.delete('/:id',deleteTweet)
 
 router.patch('/update/:id',updateTweet)
 
-router.patch('/like',likeTweet)
+router.patch('/like/:id',likeTweet)
 
-router.patch('/unlike',unlikeTweet)
+router.patch('/unlike/:id',unlikeTweet)
 
-router.patch('/comment',commentTweet)
+router.patch('/comment/:id',commentTweet)
 
 
 module.exports = router;
