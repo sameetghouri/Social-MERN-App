@@ -12,8 +12,22 @@ export const counterSlice = createSlice({
     set_tweets: (state, action) => {
       state.tweets = [...action.payload]
     },
-    set_tweet: (state, action) => {
-      state.tweets = state.tweets.map((item)=> item._id === action.payload._id ? action.payload : item)
+    set_tweetlike: (state, action) => {
+      state.tweets = state.tweets.map((item)=> item._id === action.payload.tweetid ? ({
+        ...item, likes:[...item.likes, action.payload.userid]
+      }) : item)
+    },
+    set_tweetunlike: (state, action) => {
+      state.tweets = state.tweets.map((item)=> item._id === action.payload.tweetid ? ({
+        ...item, likes: [item.likes.filter((like)=>like!==action.payload.userid)]
+      }) : item)
+    },
+    set_comment: (state, action) => {
+      const {tweetid,userid,userdp,username,comment}= action.payload
+      state.tweets = state.tweets.map((item)=> item._id === tweetid ? ({
+        ...item,
+        comments:[...item.comments, {userid,userdp,username,comment}]
+      }) : item)
     },
     create_tweet: (state,action) => {
       state.tweets = [action.payload,...state.tweets];
@@ -31,7 +45,7 @@ export const counterSlice = createSlice({
 })
 
 // Action creators are generated for each case reducer function
-export const { set_tweets, set_tweet, create_tweet,delete_tweet,LOGIN,LOGOUT  } = counterSlice.actions
+export const { set_tweets, set_tweetlike, set_tweetunlike, set_comment, create_tweet,delete_tweet,LOGIN,LOGOUT  } = counterSlice.actions
 
 export default counterSlice.reducer
 

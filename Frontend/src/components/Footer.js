@@ -13,7 +13,7 @@ const Footer = () => {
     dispatch(set_tweets([]))
 }
     return ( 
-        <div className="hidden md:block md:col-span-2 bg-gre">
+        <div className="hidden  md:block md:fixed md:right-0 md:w-1/5 md:h-screen md:col-span-2 bg-gre">
         
         <nav className=" flex flex-col items-center justify-center pt-4 ">
             {!user && <div className='w-10/12 shadow-md text-center font-semibold text-gray-900 cursor-pointer my-2 px-2 py-4 hover:bg-bre hover:text-white rounded-lg '><Link  to='/signup'>Sign up</Link></div>}

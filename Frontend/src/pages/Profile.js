@@ -32,31 +32,25 @@ const Profile = () => {
     <main className=" bg-gre col-span-5 md:col-span-6 flex flex-col items-center ">
         
             <div className="w-11/12 bg-white shadow-sm pt-10 pb-4  mt-3 rounded-lg flex flex-col items-center ">
-            <div className="h-28 ">
-              <div className=" w-24 h-24 rounded-full overflow-hidden">
-              <img  src={`/ProfilePics/${user?.dp}`} alt="DP"></img> 
-              </div>
-            </div>
+            
+              <div className=" w-24 h-24  rounded-full overflow-hidden">
+              <img src={`/ProfilePics/${user?.dp}`} alt="dp"></img> 
+             </div>
             <div className="mt-4 font-bold text-3xl text-gray-900 text-center">{user?.name}</div>   
             </div >
         <h2 className="text-center mt-10 mb-3 font-semibold text-xl text-gray-800 ">Profile Tweets</h2>
         
         {tweets && tweets.map((item)=>(
-                <TweetDetails key={item._id} tweet={item} profile={true}/>
+                <TweetDetails key={item._id} tweet={item} edit={true}/>
             ))} 
 
       {/* {isloading && <div className="flex mt-4 justify-center items-center gap-2 text-gray-800 text-3xl">
                       <span className="h-8 w-8 block rounded-full animate-spin text-white "><FiAperture /></span>
                       loading...</div>}
                       
-      {array && array.map((item) =>{
-          return( 
-          <div className="bg-gray-100 m-3 p-4 rounded-lg shadow-md" >
-          <h1 className="text-xl font-bold border-b-2 border-gray-300 text-center my-2 pb-2">{item.author}</h1>
-          <h1 className="text-lg text-center mb-1 text-gray-800 font-semibold">{item.title}</h1>
-          <p>{item.description}</p>                                            
-          </div>)
-      })} */}
+      */}
+
+
     </main>
         <Footer />
     </div>

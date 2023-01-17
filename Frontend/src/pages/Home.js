@@ -36,7 +36,7 @@ const user = useSelector((state)=>state?.counter?.user)
         
         <h2 className="text-center text-gray-800 mt-4 mb-2 font-bold text-3xl">Tweets</h2>
         {tweets && tweets.map((item)=>(
-                <TweetDetails key={item._id} tweet={item}/>
+                <TweetDetails key={item._id} tweet={item} edit={false}/>
             ))} 
 
              
