@@ -33,7 +33,7 @@ export const counterSlice = createSlice({
       state.tweets = [action.payload,...state.tweets];
     },
     delete_tweet: (state,action) => {
-      state.tweets =  state.tweets.filter((item)=> item._id!== action.payload._id)
+      state.tweets =  state.tweets.filter((item)=> item._id!== action.payload.tweetid)
     },
     LOGIN:(state,action)=>{
       state.user = action.payload 

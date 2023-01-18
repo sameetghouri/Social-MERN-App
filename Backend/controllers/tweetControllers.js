@@ -62,12 +62,8 @@ const deleteTweet= async (req,res)=>{
     if(!mongoose.Types.ObjectId.isValid(id)){
         return res.status(404).json({error: "Invalid Tweet id"})
     }
-    
-    const tweet = await Tweet.findByIdAndDelete(id)
-    if(!tweet){
-        return res.status(404).json({error:"No Tweet Found"})
-    }
-     res.status(200).json(tweet)  
+    await Tweet.findByIdAndDelete(id)
+    res.status(200).json({message:"Tweet Deleted" })  
 }catch(error){
     res.status(404).json({error:" error in delete request"})
 }  
