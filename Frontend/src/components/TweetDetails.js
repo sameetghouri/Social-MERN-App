@@ -1,4 +1,5 @@
 import  {useState} from 'react';
+import {Link} from 'react-router-dom';
 import { useDispatch, useSelector} from "react-redux";
 import {RiDeleteBin6Line} from "react-icons/ri";
 import {FiEdit} from "react-icons/fi";
@@ -39,18 +40,21 @@ const TweetDetails = ({tweet, edit}) => {
               'Authorization':`Bearer ${user.token}`}
         })
         const json = await response.json()
-        console.log(json)   
+        console.log(json) 
+        
     }
     const patchUnlike = async ()=>{
-      dispatch(set_tweetunlike({tweetid:tweet._id, userid:user.id}));
+      dispatch(set_tweetunlike({tweetid:tweet._id, userid:user.id}))
       const response = await fetch('/api/tweet/unlike/'+tweet._id,{
           method:'PATCH',
           headers:{
             'Authorization':`Bearer ${user.token}`}
       })
       const json = await response.json()
-      console.log(json)}
-
+      console.log(json)
+      
+    }
+      
     const handledelete= async ()=>{
         
         const response = await fetch('/api/tweet/'+tweet._id,{
@@ -64,24 +68,24 @@ const TweetDetails = ({tweet, edit}) => {
             // dispatch({type:'DELETE_tweet', payload:json})
             dispatch(delete_tweet({tweetid:tweet._id}))
         }  
-    }  
-    const openfun = ()=>{
-      setopen(!open)
-    }  
+    }
+    
+    const openfun = ()=>{ setopen(!open) }
+
 return ( 
   <div className="w-10/12 bg-white shadow-sm rounded-2xl py-6 px-10 my-2 " >
       <div className="flex items-center w-full relative">
       <img src={`/ProfilePics/${tweet.tweetauthordp}`} alt="DP" className="w-10 h-10 rounded-full mr-4"/>
       <div className="text-lg font-medium">{tweet.tweetauthor}</div>
       {edit && <div className="absolute right-1  ">
-      <GoThreeBars className="w-6 h-6  " onClick={openfun} /> 
+      <GoThreeBars className="w-10 h-10 p-2 cursor-pointer" onClick={openfun} /> 
       {open && 
-      <ul className=" absolute right-4 top-0 px-2 rounded-lg ">
-        <li className='p-1 rounded-lg shadow-lg'>
-          <FiEdit className="w-5 h-5"/>
+      <ul className=" absolute right-6 top-2 px-2 rounded-lg ">
+        <li className='p-1 rounded-lg shadow-xl'>
+          <Link to={`/edit/${tweet._id}`}> <FiEdit className="w-5 h-5" /></Link>
         </li>
-        <li className='p-1 rounded-lg shadow-lg'>
-          <RiDeleteBin6Line className="w-5 h-5" onClick={handledelete}/>
+        <li className='p-1 rounded-lg shadow-xl'>
+          <RiDeleteBin6Line className="w-5 h-5 cursor-pointer" onClick={handledelete}/>
         </li> 
       </ul>}
       </div>}

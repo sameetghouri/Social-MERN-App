@@ -73,15 +73,16 @@ const deleteTweet= async (req,res)=>{
 const updateTweet = async (req,res)=>{
     const {id} =req.params
     try{
-    if(!mongoose.Types.ObjectId.isValid(id)){
-        return res.status(404).json({error: "Invalid tweet id"})
+    const tweet = await Tweet.findById(id)
+   console.log(req.body?.tweetbody)
+    const updatedtweet ={     
+        tweetbody: req.body?.tweetbody || null,
+        tweetimage: req.file?.path.slice(15) || tweet?.tweetimage,
     }
-    
-    const tweet= await Tweet.findByIdAndUpdate(id, req.body)
-    if(!tweet){
-        return res.status(404).json({error:"No Tweet Found"})
-    }
-     res.status(200).json(tweet)
+
+    const response = await Tweet.findByIdAndUpdate(id, updatedtweet,{new:true})
+   
+     res.status(200).json(response)
     }catch(error){
         res.status(400).json({error:" error in update request"})
    }

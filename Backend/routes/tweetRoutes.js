@@ -14,7 +14,7 @@ router.get('/',getTweets)
 
 router.get('/profile',getoneuserTweets)
 
-router.get('/:id',getTweet)
+router.get('/single/:id',getTweet)
 
 const upload = multer({ 
     storage: multer.diskStorage({
@@ -30,7 +30,7 @@ router.post('/',upload,createTweet)
 
 router.delete('/:id',deleteTweet)
 
-router.patch('/update/:id',updateTweet)
+router.put('/update/:id',updateTweet)
 
 router.patch('/like/:id',likeTweet)
 

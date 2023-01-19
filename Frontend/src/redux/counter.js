@@ -29,9 +29,9 @@ export const counterSlice = createSlice({
         comments:[...item.comments, {userid,userdp,username,comment}]
       }) : item)
     },
-    create_tweet: (state,action) => {
-      state.tweets = [action.payload,...state.tweets];
-    },
+    // create_tweet: (state,action) => {
+    //   state.tweets = [action.payload,...state.tweets];
+    // },
     delete_tweet: (state,action) => {
       state.tweets =  state.tweets.filter((item)=> item._id!== action.payload.tweetid)
     },

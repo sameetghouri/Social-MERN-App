@@ -5,6 +5,7 @@ import Profile from './pages/Profile';
 import Signup from './pages/Signup';
 import Signin from './pages/Signin';
 import Createpost from './pages/CreatePost';
+import EditPost from './pages/EditPost';
 import {useDispatch, useSelector} from "react-redux";
 import {  LOGIN } from "./redux/counter";
 import { useEffect } from 'react';
@@ -32,7 +33,9 @@ function App() {
       <Route path='/profile' element={<Profile/>} />
       <Route path='/signin' element={<Signin/>} />
       <Route path='/signup' element={<Signup/>} />
-      <Route path='/post' element={<Createpost/>} />
+      <Route path='/create' element={<Createpost/>} />
+      <Route path='/edit/:id' element={<EditPost/>} />
+
       
       
       <Route path='*' element={<div className="text-4xl text-center col-span-4 mt-10">Page Not Found</div>} />
