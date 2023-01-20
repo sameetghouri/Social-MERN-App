@@ -30,7 +30,7 @@ router.post('/',upload,createTweet)
 
 router.delete('/:id',deleteTweet)
 
-router.put('/update/:id',updateTweet)
+router.patch('/update/:id',upload,updateTweet)
 
 router.patch('/like/:id',likeTweet)
 

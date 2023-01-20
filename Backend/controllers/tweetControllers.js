@@ -46,7 +46,7 @@ const createTweet = async (req,res)=>{
     const tweet = await Tweet.create({
         tweetauthor,
         tweetauthordp:req.body?.dp || null,
-        tweetbody: req.body?.tweetbody || null,
+        tweetbody: req.body?.tweetbody || "",
         tweetimage: req.file?.path.slice(15) || null,
         user_id})
     res.status(200).json(tweet)
@@ -74,9 +74,8 @@ const updateTweet = async (req,res)=>{
     const {id} =req.params
     try{
     const tweet = await Tweet.findById(id)
-   console.log(req.body?.tweetbody)
     const updatedtweet ={     
-        tweetbody: req.body?.tweetbody || null,
+        tweetbody: req.body?.tweetbody || "",
         tweetimage: req.file?.path.slice(15) || tweet?.tweetimage,
     }
 

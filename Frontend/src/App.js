@@ -29,12 +29,12 @@ function App() {
     <Router >
     <div className='col-span-1'><Navbar/></div>
     <Routes>
-      <Route path='/' element={<Home/>} />
-      <Route path='/profile' element={<Profile/>} />
-      <Route path='/signin' element={<Signin/>} />
-      <Route path='/signup' element={<Signup/>} />
-      <Route path='/create' element={<Createpost/>} />
-      <Route path='/edit/:id' element={<EditPost/>} />
+      <Route path='/' element={User ? <Home/> : <Navigate to="/signin"/>} />
+      <Route path='/profile' element={User ? <Profile/> : <Navigate to="/signin"/>} />
+      <Route path='/signin' element={!User ? <Signin/> : <Navigate to="/"/>} />
+      <Route path='/signup' element={!User ? <Signup/> : <Navigate to="/"/>} />
+      <Route path='/create' element={User ? <Createpost/> :  <Navigate to="/signin"/>} />
+      <Route path='/edit/:id' element={User ?<EditPost/> :  <Navigate to="/signin"/>} />
 
       
       

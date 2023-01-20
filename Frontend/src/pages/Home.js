@@ -3,23 +3,30 @@ import { useState, useEffect } from "react";
 import {useSelector, useDispatch} from "react-redux";
 import {  set_tweets } from "../redux/counter";
 import TweetDetails from "../components/TweetDetails";
-// import {FiAperture} from 'react-icons/fi'
+import {FiAperture} from 'react-icons/fi'
 
 const Home = () => {
 const user = useSelector((state)=>state?.counter?.user)
   const tweets = useSelector((state)=>state?.counter?.tweets)
+  const [isloading, setIsloading] = useState(true)
+  const [error, setError] = useState(null)
   const dispatch = useDispatch()
   useEffect(()=>{
     const fetchTweets = async () =>{
-        const response = await fetch('api/tweet',{
+        const response = await fetch('/api/tweet',{
             headers:{
                 'Authorization':`Bearer ${user.token}`
             }
         })
         const json = await response.json()
+        if(!response.ok){
+            setError(json)
+            setIsloading(false)
+        }
 
         if(response.ok){
             dispatch(set_tweets(json))
+            setIsloading(false)
         }
     }
     if(user){
@@ -35,24 +42,19 @@ const user = useSelector((state)=>state?.counter?.user)
         
         
         <h2 className="text-center text-gray-800 mt-4 mb-2 font-bold text-3xl">Tweets</h2>
+        {error && <div>{error}</div>}
+        {isloading && <div className="flex mt-4 justify-center items-center gap-2 text-gray-800 text-3xl">
+                    <span className="h-8 w-8 block rounded-full animate-spin text-white "><FiAperture /></span>
+                    loading...</div>}
         {tweets && tweets.map((item)=>(
                 <TweetDetails key={item._id} tweet={item} edit={false}/>
             ))} 
 
              
 
-    {/* {isloading && <div className="flex mt-4 justify-center items-center gap-2 text-gray-800 text-3xl">
-                    <span className="h-8 w-8 block rounded-full animate-spin text-white "><FiAperture /></span>
-                    loading...</div>}
+     
                     
-    {array && array.map((item) =>{
-        return( 
-        <div className="bg-gray-100 m-3 p-4 rounded-lg shadow-md" >
-        <h1 className="text-xl font-bold border-b-2 border-gray-300 text-center my-2 pb-2">{item.author}</h1>
-        <h1 className="text-lg text-center mb-1 text-gray-800 font-semibold">{item.title}</h1>
-        <p>{item.description}</p>                                            
-        </div>)
-    })} */}
+    
     </main>
     
     <Footer />

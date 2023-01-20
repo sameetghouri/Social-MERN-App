@@ -9,7 +9,7 @@ const Profile = () => {
   const dispatch = useDispatch()
   useEffect(()=>{
     const fetchTweets = async () =>{
-        const response = await fetch('api/tweet/profile',{
+        const response = await fetch('/api/tweet/profile',{
             headers:{
                 'Authorization':`Bearer ${user.token}`
             }
@@ -34,7 +34,7 @@ const Profile = () => {
             <div className="w-11/12 bg-white shadow-sm pt-10 pb-4  mt-3 rounded-lg flex flex-col items-center ">
             
               <div className=" w-24 h-24  rounded-full overflow-hidden">
-              <img src={`/ProfilePics/${user?.dp}`} alt="dp"></img> 
+              {user?.dp && <img src={`/ProfilePics/${user.dp}`} alt="dp"></img> }
              </div>
             <div className="mt-4 font-bold text-3xl text-gray-900 text-center">{user?.name}</div>   
             </div >

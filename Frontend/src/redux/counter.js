@@ -12,6 +12,7 @@ export const counterSlice = createSlice({
     set_tweets: (state, action) => {
       state.tweets = [...action.payload]
     },
+    
     set_tweetlike: (state, action) => {
       state.tweets = state.tweets.map((item)=> item._id === action.payload.tweetid ? ({
         ...item, likes:[...item.likes, action.payload.userid]

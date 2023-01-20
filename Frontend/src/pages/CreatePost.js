@@ -2,13 +2,14 @@ import { useState } from "react";
 import axios from "axios";
 import Footer from "../components/Footer";
 import { useSelector } from "react-redux";
+import { useNavigate } from "react-router-dom";
 
 const Createpost = () => {
     const user = useSelector((state)=>state?.counter?.user)
     const [tweetbody, settweetbody]= useState("");
     const [tweetimage, settweetimage]= useState("");
     const [tweetpic, settweetpic]= useState("");
-   
+   const navigate = useNavigate();
 
     const handlesubmit = (e)=>{
         e.preventDefault();
@@ -28,6 +29,7 @@ const Createpost = () => {
         settweetbody("");
         settweetimage("");
         settweetpic("");
+        navigate("/");
 
     };
     

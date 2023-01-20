@@ -1,9 +1,8 @@
 import { useState,useEffect } from "react";
 import {useParams}  from "react-router-dom";
-import axios from "axios";
 import Footer from "../components/Footer";
 import { useSelector } from "react-redux";
-
+import { useNavigate } from "react-router-dom";
 const EditPost = () => {
     const {id} = useParams();
     const user = useSelector((state)=>state?.counter?.user)
@@ -11,9 +10,10 @@ const EditPost = () => {
     const [tweetimage, settweetimage]= useState(null);
     const [oldtweetpic, setoldtweetpic]= useState(null);
     const [newtweetpic, setnewtweetpic]= useState(null);
-   
+   const navigate = useNavigate();
     useEffect(()=>{
-        fetch(`/api/tweet/single/${id}`,{
+        if(user)
+        {fetch(`/api/tweet/single/${id}`,{
                 headers:{
                     'Authorization':`Bearer ${user?.token}`
                 }
@@ -25,21 +25,20 @@ const EditPost = () => {
                 
             })
             .catch((err)=>console.log(err))
-      
-    },[user?.token ,id])
+        }
+    },[user,id])
 
     const handleEdit =async (e)=>{
         e.preventDefault();
         const formData = new FormData();
         formData.append('tweetbody', tweetbody);
-        {tweetimage && formData.append('postpic', tweetimage)}
+        if(tweetimage){formData.append('postpic', tweetimage)}
 
        await fetch(`/api/tweet/update/${id}`, {
-            headers: {'content-type': 'multipart/form-data',
+            headers: {
                       'authorization': `Bearer ${user?.token}`},
-            method:"PUT",
+            method:"PATCH",
             body:formData,
-            
             })
         .then((res)=>{console.log(res)})
         .catch((err)=>{console.log(err)});
@@ -47,6 +46,7 @@ const EditPost = () => {
         settweetimage("");
         setoldtweetpic("");
         setnewtweetpic("");
+        navigate(`/profile`)
 
     };
     const onImageChange = (e) => {
@@ -64,7 +64,7 @@ const EditPost = () => {
             <form onSubmit={handleEdit} className="flex flex-col items-center w-4/5 ">
             
             <textarea className="p-2 h-44 w-full rounded-lg shadow-lg" type="text" value={tweetbody} onChange = {(e) => settweetbody(e.target.value)}></textarea>
-            {!newtweetpic && <img src={`/PostPics/${oldtweetpic}`} alt="postpic" className="w-3/5 mt-1 rounded-lg shadow-lg"/>}
+            {!newtweetpic && oldtweetpic && <img src={`/PostPics/${oldtweetpic}`} alt="postpic" className="w-3/5 mt-1 rounded-lg shadow-lg"/>}
             {newtweetpic && <img src={newtweetpic} alt="postpic" className="w-3/5 mt-1 rounded-lg shadow-lg"/>}
             <input type="file"
              accept=".png, .jpg, .jpeg"
