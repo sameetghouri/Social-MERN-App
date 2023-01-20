@@ -3,7 +3,7 @@ import { useState, useEffect } from "react";
 import {useSelector, useDispatch} from "react-redux";
 import {  set_tweets } from "../redux/counter";
 import TweetDetails from "../components/TweetDetails";
-import {FiAperture} from 'react-icons/fi'
+import {BiLoaderAlt} from 'react-icons/bi'
 
 const Home = () => {
 const user = useSelector((state)=>state?.counter?.user)
@@ -25,8 +25,9 @@ const user = useSelector((state)=>state?.counter?.user)
         }
 
         if(response.ok){
-            dispatch(set_tweets(json))
             setIsloading(false)
+            dispatch(set_tweets(json))
+            
         }
     }
     if(user){
@@ -43,9 +44,9 @@ const user = useSelector((state)=>state?.counter?.user)
         
         <h2 className="text-center text-gray-800 mt-4 mb-2 font-bold text-3xl">Tweets</h2>
         {error && <div>{error}</div>}
-        {isloading && <div className="flex mt-4 justify-center items-center gap-2 text-gray-800 text-3xl">
-                    <span className="h-8 w-8 block rounded-full animate-spin text-white "><FiAperture /></span>
-                    loading...</div>}
+        {isloading && <div className="flex justify-center ">
+            <span className=" animate-spin text-sky-600 "><BiLoaderAlt className="h-8 w-8" /></span>
+        </div>}
         {tweets && tweets.map((item)=>(
                 <TweetDetails key={item._id} tweet={item} edit={false}/>
             ))} 
