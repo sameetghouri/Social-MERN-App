@@ -73,7 +73,7 @@ const TweetDetails = ({tweet, edit}) => {
     const openfun = ()=>{ setopen(!open) }
 
 return ( 
-  <div className="w-10/12 bg-white shadow-sm rounded-2xl py-6 px-10 my-2 " >
+  <div className="w-full bg-white shadow-sm rounded-2xl py-6 px-8 my-2 " >
       <div className="flex items-center w-full relative">
       <img src={`/ProfilePics/${tweet.tweetauthordp}`} alt="DP" className="w-10 h-10 rounded-full mr-4"/>
       <div className="text-lg font-medium">{tweet.tweetauthor}</div>
@@ -93,7 +93,7 @@ return (
       <div className="text-gray-600 text-xs my-2">
       {formatDistanceToNow(new Date(tweet.createdAt), {addSuffix:true})}
       </div>
-      <p className="my-4">{tweet.tweetbody}</p>
+      <p className="my-4 ">{tweet.tweetbody}</p>
       {tweet.tweetimage &&<div className="w-full flex justify-center" > 
       <img className="w-full rounded-lg" src={`PostPics/${tweet.tweetimage}`} alt="tweetimage"/></div>}
       

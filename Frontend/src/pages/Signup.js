@@ -2,6 +2,7 @@ import { useState } from "react";
 import { useDispatch} from "react-redux";
 import {LOGIN} from "../redux/counter"
 import Footer from "../components/Footer";
+import Nav from "../components/Nav";
 const Signup = () => {
    
     const [newname, setnewname]= useState("");
@@ -44,9 +45,9 @@ const Signup = () => {
     
        
     return ( 
-      <div className="col-span-4">
-      <div className="h-screen grid grid-cols-5 md:grid-cols-8">
-        <div className="col-span-5 md:col-span-6 flex flex-col items-center bg-gre pt-16">
+      <div className="h-screen bg-gre col-span-4 sm:col-span-3 lg:col-span-2 ">
+        <Nav/>
+        <div className="flex flex-col items-center bg-gre pt-16">
         
         <h1 className="mb-6 text-2xl text-center">Sign Up</h1>
 
@@ -69,8 +70,7 @@ const Signup = () => {
         
         </form>     
         </div>
-        <Footer/>
-        </div>
+        
         </div> 
  );
 }

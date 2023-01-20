@@ -9,6 +9,7 @@ import EditPost from './pages/EditPost';
 import {useDispatch, useSelector} from "react-redux";
 import {  LOGIN } from "./redux/counter";
 import { useEffect } from 'react';
+import Footer from './components/Footer';
 
 
 function App() {
@@ -24,10 +25,10 @@ function App() {
   },[dispatch])
   
   return (
-    <div className='grid grid-cols-5'>
+    <div className='grid grid-cols-4'>
        
     <Router >
-    <div className='col-span-1'><Navbar/></div>
+    <div className='sm:col-span-1'><Navbar/></div>
     <Routes>
       <Route path='/' element={User ? <Home/> : <Navigate to="/signin"/>} />
       <Route path='/profile' element={User ? <Profile/> : <Navigate to="/signin"/>} />
@@ -40,6 +41,7 @@ function App() {
       
       <Route path='*' element={<div className="text-4xl text-center col-span-4 mt-10">Page Not Found</div>} />
     </Routes>
+    <div className='lg:col-span-1'><Footer/></div>
   </Router>
   </div>
    

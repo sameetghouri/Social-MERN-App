@@ -1,8 +1,8 @@
 import { useState,useEffect } from "react";
 import {useParams}  from "react-router-dom";
-import Footer from "../components/Footer";
 import { useSelector } from "react-redux";
 import { useNavigate } from "react-router-dom";
+import Nav from "../components/Nav";
 const EditPost = () => {
     const {id} = useParams();
     const user = useSelector((state)=>state?.counter?.user)
@@ -55,9 +55,9 @@ const EditPost = () => {
      }
 
     return ( 
-        <div className="col-span-4">
-       <div className="h-screen grid grid-cols-5 md:grid-cols-8">
-        <div className="col-span-5 md:col-span-6 flex flex-col items-center  bg-gre ">
+        <div className="h-screen bg-gre col-span-4 sm:col-span-3 lg:col-span-2 ">
+       <Nav/>
+        <div className="flex flex-col items-center  bg-gre ">
                      
             <h1 className="m-3 text-2xl">Edit Tweet</h1>
             
@@ -74,8 +74,7 @@ const EditPost = () => {
             <button type="submit" className=" bg-bre text-white my-4 mx-4 w-24 px-4 py-2 rounded-r-full rounded-l-full cursor-pointer transform hover:scale-110 transition duration-100">Update</button>
             </form>
         </div>
-        <Footer/>
-        </div>
+        
         </div> 
      );
 }
