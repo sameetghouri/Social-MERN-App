@@ -40,8 +40,7 @@ const TweetDetails = ({tweet, edit}) => {
               'Authorization':`Bearer ${user.token}`}
         })
         const json = await response.json()
-        console.log(json) 
-        
+        console.log(json)   
     }
     const patchUnlike = async ()=>{
       dispatch(set_tweetunlike({tweetid:tweet._id, userid:user.id}))
@@ -52,11 +51,8 @@ const TweetDetails = ({tweet, edit}) => {
       })
       const json = await response.json()
       console.log(json)
-      
-    }
-      
+    } 
     const handledelete= async ()=>{
-        
         const response = await fetch('/api/tweet/'+tweet._id,{
             method:'DELETE',
             headers:{
@@ -65,7 +61,6 @@ const TweetDetails = ({tweet, edit}) => {
         const json = await response.json()
         console.log(json)
         if (response.ok){
-            // dispatch({type:'DELETE_tweet', payload:json})
             dispatch(delete_tweet({tweetid:tweet._id}))
         }  
     }
@@ -74,9 +69,11 @@ const TweetDetails = ({tweet, edit}) => {
 
 return ( 
   <div className="w-full bg-white shadow-sm rounded-2xl py-6 px-8 my-2 " >
+      
       <div className="flex items-center w-full relative">
       <img src={`/ProfilePics/${tweet.tweetauthordp}`} alt="DP" className="w-10 h-10 rounded-full mr-4"/>
       <div className="text-lg font-medium">{tweet.tweetauthor}</div>
+      
       {edit && <div className="absolute right-1  ">
       <GoThreeBars className="w-10 h-10 p-2 cursor-pointer" onClick={openfun} /> 
       {open && 
@@ -90,9 +87,11 @@ return (
       </ul>}
       </div>}
       </div>
+
       <div className="text-gray-600 text-xs my-2">
       {formatDistanceToNow(new Date(tweet.createdAt), {addSuffix:true})}
       </div>
+
       <p className="my-4 ">{tweet.tweetbody}</p>
       {tweet.tweetimage &&<div className="w-full flex justify-center" > 
       <img className="w-full rounded-lg" src={`PostPics/${tweet.tweetimage}`} alt="tweetimage"/></div>}
@@ -105,10 +104,12 @@ return (
       <div  ><BiCommentDetail className="w-6 h-6" /> </div>  
       <div className="text-gray-600 ml-2">{tweet.comments.length}</div>
       </div>
+
       <div className="flex items-center my-3">
       <input type='text' placeholder="Write Comment" value={comment} onChange={(e)=>{setcomment(e.target.value)}} className=" mr-1 w-11/12 px-2 py-1 rounded-xl border-2 " />
       <button onClick={patchComment} className=" py-1 px-4  bg-bre rounded-full cursor-pointer transform hover:scale-110 transition duration-100 text-gray-100">Post</button>
       </div>
+
       {tweet.comments && tweet.comments.map((item,id)=>{
         return <div key={id} className="flex  mt-2 mb-3 p-2  border-gre shadow rounded-xl">
         <img src={`/ProfilePics/${item.userdp}` || ""} alt="dp" className="w-7 h-7 rounded-full mr-2"/>

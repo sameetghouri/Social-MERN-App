@@ -37,9 +37,7 @@ function App() {
       <Route path='/create' element={User ? <Createpost/> :  <Navigate to="/signin"/>} />
       <Route path='/edit/:id' element={User ?<EditPost/> :  <Navigate to="/signin"/>} />
 
-      
-      
-      <Route path='*' element={<div className="text-4xl text-center col-span-4 mt-10">Page Not Found</div>} />
+      <Route path='*' element={<div className="text-4xl text-center col-span-4 mt-10">404 Page Not Found</div>} />
     </Routes>
     <div className='lg:col-span-1'><Footer/></div>
   </Router>

@@ -47,6 +47,6 @@ return (
             ))} 
         </main>
 </div>
-     );
+);
 }
 export default Home;
