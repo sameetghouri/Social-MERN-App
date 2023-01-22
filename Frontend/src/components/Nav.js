@@ -36,7 +36,7 @@ const Nav = () => {
             {!user && <div className='   hover:bg-bre hover:text-white  rounded-lg  mb-1 mx-3 py-2 hover:shadow-lg '><Link className=" p-4 pointer-cursor font-bold" to='/signup'>Sign up</Link></div>}
             {!user && <div className='   hover:bg-bre hover:text-white  rounded-lg  mb-1 mx-3 py-2 hover:shadow-lg '><Link className=" p-4 pointer-cursor font-bold" to='/signin'>Log in</Link></div>}
             {user && <div className='   hover:bg-bre hover:text-white  rounded-lg  mb-1 mx-3  hover:shadow-lg '><Link  to='/create'><IoIosCreate className="w-11 h-11 p-2 cursor-pointer"/></Link></div>}
-            {user && <div className='   hover:bg-bre hover:text-white  rounded-lg  mb-1 mx-3  hover:shadow-lg '><BiPowerOff className="w-11 h-11 p-2 cursor-pointer"onClick={handleClick}/> </div>} 
+            {user && <div className='  hover:bg-bre hover:text-white  rounded-lg  mb-1 mx-3  hover:shadow-lg '><BiPowerOff className="w-11 h-11 p-2 cursor-pointer"onClick={handleClick}/> </div>} 
             </div>}
             </div>
             
