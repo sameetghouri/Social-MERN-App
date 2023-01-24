@@ -42,7 +42,7 @@ const Profile = () => {
         </div>
         <div className="mt-4 font-bold text-3xl text-gray-900 text-center">{user?.name}</div>   
         </div >
-        <h2 className="text-center mt-10 mb-3 font-semibold text-xl text-gray-800 ">Profile Tweets</h2>
+        <h2 className="text-center mt-10 mb-3 font-semibold text-xl text-gray-800 ">Your Posts</h2>
         {error && <div>{error}</div>}
         {isloading && <div className="flex justify-center ">
         <span className=" animate-spin text-sky-600 "><BiLoaderAlt className="h-8 w-8" /></span>

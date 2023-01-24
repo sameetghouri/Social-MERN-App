@@ -21,7 +21,7 @@ const Navbar = () => {
             {user && <div className='w-3/5 bg-white  text-center my-2  hover:bg-bre hover:text-white  rounded-xl  px-2 py-4 shadow-md  hover:shadow-lg '><Link className="  py-4 pointer-cursor" to='/profile'>Profile</Link></div>}            
             {!user && <div className='lg:hidden w-3/5 bg-white text-center my-2  hover:bg-bre hover:text-white  rounded-xl  px-2 py-4 shadow-md  hover:shadow-lg '><Link className=" py-4 pointer-cursor" to='/signup'>Sign up</Link></div>}
             {!user && <div className='lg:hidden w-3/5 bg-white text-center my-2  hover:bg-bre hover:text-white  rounded-xl  px-2 py-4 shadow-md  hover:shadow-lg '><Link className=" py-4 pointer-cursor" to='/signin'>Log in</Link></div>}
-            {user && <div className='lg:hidden w-3/5 bg-white text-center my-2  hover:bg-bre hover:text-white  rounded-xl  px-2 py-4 shadow-md  hover:shadow-lg '><Link className=" py-4  pointer-cursor" to='/create'>Create Tweet</Link></div>}
+            {user && <div className='lg:hidden w-3/5 bg-white text-center my-2  hover:bg-bre hover:text-white  rounded-xl  px-2 py-4 shadow-md  hover:shadow-lg '><Link className=" py-4  pointer-cursor" to='/create'>Create Post</Link></div>}
             {user && <div className='lg:hidden w-3/5 bg-white text-center my-2  hover:bg-bre hover:text-white  rounded-xl   shadow-md  hover:shadow-lg '>
             <button className=" py-4 px-2  pointer-cursor " onClick={handleClick}>Log Out</button> </div>}
            

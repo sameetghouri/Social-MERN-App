@@ -10,7 +10,7 @@ import { IoIosCreate }  from "react-icons/io";
 const Nav = () => {
     const user = useSelector((state)=>state?.counter?.user)
     const dispatch = useDispatch();
-    const [open, setopen] = useState(false)
+    const [opennav, setopennav] = useState(true)
 
     const handleClick = ()=>{
         //remove user from storage
@@ -20,7 +20,7 @@ const Nav = () => {
         dispatch(LOGOUT())
         dispatch(set_tweets([]))
     }
-    const openfun = ()=>{ setopen(!open)}
+    const openfun = ()=>{ setopennav(!opennav)}
 
     return ( 
         
@@ -30,7 +30,7 @@ const Nav = () => {
             <GoThreeBars className="w-10 h-10 p-2 cursor-pointer" onClick={openfun} />
             </div>
             
-            {open && <div className=" flex items-center justify-center w-full ">
+            {opennav && <div className=" flex items-center justify-center w-full ">
             {user && <div className='   hover:bg-bre hover:text-white rounded-lg  mb-1 mx-3  hover:shadow-lg '><Link  to='/'><AiFillHome className="w-11 h-11 p-2 cursor-pointer"/></Link></div>}
             {user && <div className='    hover:bg-bre hover:text-white  rounded-lg  mb-1 mx-3  hover:shadow-lg '><Link  to='/profile'><CgProfile className="w-11 h-11 p-2 cursor-pointer"/></Link></div>}            
             {!user && <div className='   hover:bg-bre hover:text-white  rounded-lg  mb-1 mx-3 py-2 hover:shadow-lg '><Link className=" p-4 pointer-cursor font-bold" to='/signup'>Sign up</Link></div>}

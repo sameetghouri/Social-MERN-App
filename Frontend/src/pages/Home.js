@@ -37,7 +37,7 @@ return (
         <div className="h-screen bg-gre col-span-4 sm:col-span-3 lg:col-span-2 ">
         <Nav/>     
         <main className="bg-gre p-2  flex flex-col items-center">
-        <h2 className="text-center text-gray-800 mt-4 mb-2 font-bold text-3xl">Tweets</h2>
+        <h2 className="text-center text-gray-800 mt-4 mb-2 font-bold text-3xl">Posts</h2>
         {error && <div>{error}</div>}
         {isloading && <div className="flex justify-center ">
             <span className=" animate-spin text-sky-600 "><BiLoaderAlt className="h-8 w-8" /></span>
