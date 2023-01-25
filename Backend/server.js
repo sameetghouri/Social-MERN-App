@@ -4,8 +4,16 @@ const tweetRoutes = require('./routes/tweetRoutes')
 const userRoutes = require('./routes/userRoutes')
 const mongoose = require ('mongoose')
 mongoose.set('strictQuery',false);
+const cors = require('cors')
 //express app
 const app = express();
+
+//cors
+app.use(cors({
+    origin:"*",
+    methods:"GET,HEAD,PUT,PATCH,POST,DELETE",
+    credentials:true, //allow session cookie from browser to pass through
+}))
 
 //Middleware
 app.use(express.json())
