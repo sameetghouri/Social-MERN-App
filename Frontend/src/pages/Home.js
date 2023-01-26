@@ -42,7 +42,7 @@ return (
         {isloading && <div className="flex justify-center ">
             <span className=" animate-spin text-sky-600 "><BiLoaderAlt className="h-8 w-8" /></span>
         </div>}
-        {tweets && tweets.map((item)=>(
+        {!isloading && tweets && tweets.map((item)=>(
                 <TweetDetails key={item._id} tweet={item} edit={false}/>
             ))} 
         </main>
