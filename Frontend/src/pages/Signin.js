@@ -2,6 +2,7 @@ import { useState } from "react";
 import {useDispatch} from "react-redux";
 import Nav from "../components/Nav";
 import {  LOGIN } from "../redux/counter";
+import { BiLoaderAlt } from "react-icons/bi";
 const Signin = () => {
     
     const [email, setemail]= useState("");
@@ -46,7 +47,9 @@ const Signin = () => {
         <input className="p-2 rounded-lg shadow-lg " type="text" placeholder='Email' value={email} required onChange = {(e) => setemail(e.target.value)}/>
         <input className="p-2 my-4 rounded-lg shadow-lg" type="password" placeholder='Password' value={pass} required onChange = {(e) => setpass(e.target.value)}/>
         {error && <div className="bg-red-200 text-red-700 p-4 mt-3 text-center rounded-lg">{error}</div>}
-        <button disabled={isLoading} type="submit" className="bg-sky-400 mt-5 mx-14  px-4 py-2 rounded-r-full rounded-l-full cursor-pointer transform hover:scale-110 transition duration-100">Login</button>
+        <button disabled={isLoading} type="submit" className="bg-sky-400 my-5 mx-16 mt-5 mb-4 px-4 py-2 rounded-lg cursor-pointer transform hover:scale-110 transition duration-100">Login</button>
+        {isLoading &&<div className="flex items-end justify-center ">
+        <span className=" animate-spin text-sky-500 "><BiLoaderAlt className="h-10 w-10" /></span></div>}
          </form>
     </div>
     
