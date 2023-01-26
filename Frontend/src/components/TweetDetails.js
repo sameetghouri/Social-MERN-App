@@ -111,7 +111,7 @@ return (
       </div>
 
       {tweet.comments && tweet.comments.map((item,id)=>{
-        return <div key={id} className="flex  mt-2 mb-3 p-2  border-gre shadow rounded-xl">
+        return <div key={id} className="flex  mt-2 mb-3 p-2  shadow-sm bg-gre rounded-xl">
         <img src={`/ProfilePics/${item.userdp}` || ""} alt="dp" className="w-7 h-7 rounded-full mr-2"/>
         <div className="font-medium mr-2 pt-1 ">{item.username}:</div>
         <div className="text-gray-800 pt-1">{item.comment}</div>
