@@ -1,5 +1,4 @@
 import { useState } from "react";
-import axios from "axios";
 import { useSelector } from "react-redux";
 import { useNavigate } from "react-router-dom";
 import Nav from "../components/Nav";
@@ -18,10 +17,9 @@ const Createpost = () => {
         formData.append('dp', user?.dp);
         formData.append('postpic', tweetimage);
 
-        axios("api/tweet", {
-            headers: {'content-type': 'multipart/form-data',
-                      'authorization': `Bearer ${user?.token}`},
-            data:formData,
+        fetch("/api/tweet", {
+            headers: {'authorization': `Bearer ${user?.token}`},
+            body:formData,
             method:"POST"
             })
         .then((res)=>{console.log(res)})

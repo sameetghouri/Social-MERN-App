@@ -35,8 +35,7 @@ const EditPost = () => {
         if(tweetimage){formData.append('postpic', tweetimage)}
 
        await fetch(`/api/tweet/update/${id}`, {
-            headers: {
-                      'authorization': `Bearer ${user?.token}`},
+            headers: {'authorization': `Bearer ${user?.token}`},
             method:"PATCH",
             body:formData,
             })
