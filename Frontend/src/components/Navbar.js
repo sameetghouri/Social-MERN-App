@@ -20,10 +20,10 @@ const Navbar = () => {
             {user && <div className='w-4/6  text-center my-2    rounded-lg  px-2 py-4 bg-white shadow-sm'><Link className="  py-4 pointer-cursor font-bold hover:text-bre" to='/'>NewsFeed</Link></div>}
             {user && <div className='w-4/6  text-center my-2   rounded-lg  px-2 py-4 bg-white shadow-sm  '><Link className="  py-4 pointer-cursor font-bold hover:text-bre" to='/profile'>Profile</Link></div>}            
             {!user && <div className='lg:hidden w-4/6 bg-white text-center my-2  rounded-lg  px-2 py-4 shadow-sm  '><Link className=" py-4 pointer-cursor font-bold hover:text-bre" to='/signup'>Sign up</Link></div>}
-            {!user && <div className='lg:hidden w-4/6 bg-white text-center my-2  rounded-lg  px-2 py-4 shadow-sm  '><Link className=" py-4 pointer-cursor" to='/signin'>Log in</Link></div>}
-            {user && <div className='lg:hidden w-4/6 bg-white text-center my-2  rounded-lg  px-2 py-4 shadow-sm  '><Link className=" py-4  pointer-cursor" to='/create'>Create Post</Link></div>}
+            {!user && <div className='lg:hidden w-4/6 bg-white text-center my-2  rounded-lg  px-2 py-4 shadow-sm  '><Link className=" py-4 pointer-cursor font-bold hover:text-bre" to='/signin'>Log in</Link></div>}
+            {user && <div className='lg:hidden w-4/6 bg-white text-center my-2  rounded-lg  px-2 py-4 shadow-sm  '><Link className=" py-4  pointer-cursor font-bold hover:text-bre" to='/create'>Create Post</Link></div>}
             {user && <div className='lg:hidden w-4/6 bg-white text-center my-2  rounded-lg   shadow-sm  '>
-            <button className=" py-4 px-2  pointer-cursor " onClick={handleClick}>Log Out</button> </div>}
+            <button className=" py-4 px-2  pointer-cursor font-bold hover:text-bre" onClick={handleClick}>Log Out</button> </div>}
            
             </div>
             
