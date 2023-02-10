@@ -22,7 +22,6 @@ const Footer = () => {
             {user && <div className='w-3/5 bg-white shadow-sm text-center font-semibold   my-2    rounded-lg '>
             <button  className=" py-4 px-2 pointer-cursor font-bold hover:text-bre" onClick={handleClick}>Log Out</button> 
             </div>}
-          
         </nav>
     </div>
      );

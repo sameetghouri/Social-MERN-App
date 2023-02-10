@@ -53,7 +53,6 @@ const Signin = () => {
         <span className=" animate-spin text-sky-500 "><BiLoaderAlt className="h-10 w-10" /></span></div>}
          </form>
     </div>
-    
     </div> 
      );
 }

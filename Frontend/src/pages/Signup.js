@@ -44,9 +44,7 @@ const Signup = () => {
       <div className="h-screen bg-gre col-span-4 sm:col-span-3 lg:col-span-2 ">
         <Nav/>
         <div className="flex flex-col items-center bg-gre pt-14">
-        
-        
-
+   
         <form  className=" flex flex-col items-center shadow-lg bg-white py-6 px-10 rounded-lg" onSubmit={submitData}>
         <h1 className="mb-6 text-2xl text-center font-bold">Sign Up</h1>
         <input onChange={e => setnewname(e.target.value)} value={newname} required className='block rounded border bg-gre p-2 mb-2'  type="text" placeholder='Full Name' />
@@ -67,7 +65,6 @@ const Signup = () => {
         <span className=" animate-spin text-sky-500 "><BiLoaderAlt className="h-10 w-10" /></span></div>}
         </form>    
         </div>
-        
         </div> 
  );
 }
