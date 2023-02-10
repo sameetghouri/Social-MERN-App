@@ -41,12 +41,12 @@ const Signin = () => {
     return ( 
       <div className="h-screen bg-gre col-span-4 sm:col-span-3 lg:col-span-2 ">
      <Nav/>
-      <div className="flex flex-col items-center bg-gre pt-16 ">             
+      <div className="flex flex-col items-center bg-gre pt-14 ">             
         
-        <form onSubmit={handlesubmit} className="flex flex-col border-2 p-5 rounded-lg">  
-        <h1 className="mb-6 text-2xl text-center">Log in</h1>
-        <input className="p-2 rounded-lg shadow-lg " type="text" placeholder='Email' value={email} required onChange = {(e) => setemail(e.target.value)}/>
-        <input className="p-2 my-4 rounded-lg shadow-lg" type="password" placeholder='Password' value={pass} required onChange = {(e) => setpass(e.target.value)}/>
+        <form onSubmit={handlesubmit} className="flex flex-col shadow-lg bg-white py-6 px-8 rounded-lg">  
+        <h1 className="mb-6 text-2xl text-center font-bold">Log in</h1>
+        <input className="p-2 rounded  border bg-gre " type="text" placeholder='Email' value={email} required onChange = {(e) => setemail(e.target.value)}/>
+        <input className="p-2 my-4 rounded border bg-gre " type="password" placeholder='Password' value={pass} required onChange = {(e) => setpass(e.target.value)}/>
         {error && <div className="bg-red-200 text-red-700 p-4 mt-3 text-center rounded-lg">{error}</div>}
         <button disabled={isLoading} type="submit" className="bg-sky-400 my-5 mx-16 mb-4 px-4 py-2 rounded-lg cursor-pointer transform hover:scale-110 transition duration-100">Login</button>
         {isLoading &&<div className="flex items-end justify-center ">
