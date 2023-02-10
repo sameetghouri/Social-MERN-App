@@ -41,9 +41,10 @@ const Signin = () => {
     return ( 
       <div className="h-screen bg-gre col-span-4 sm:col-span-3 lg:col-span-2 ">
      <Nav/>
-      <div className="flex flex-col items-center bg-gre pt-20">             
+      <div className="flex flex-col items-center bg-gre pt-16 ">             
+        
+        <form onSubmit={handlesubmit} className="flex flex-col border-2 p-5 rounded-lg">  
         <h1 className="mb-6 text-2xl text-center">Log in</h1>
-        <form onSubmit={handlesubmit} className="flex flex-col">  
         <input className="p-2 rounded-lg shadow-lg " type="text" placeholder='Email' value={email} required onChange = {(e) => setemail(e.target.value)}/>
         <input className="p-2 my-4 rounded-lg shadow-lg" type="password" placeholder='Password' value={pass} required onChange = {(e) => setpass(e.target.value)}/>
         {error && <div className="bg-red-200 text-red-700 p-4 mt-3 text-center rounded-lg">{error}</div>}
