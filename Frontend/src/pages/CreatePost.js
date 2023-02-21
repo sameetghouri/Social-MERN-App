@@ -30,10 +30,7 @@ const Createpost = () => {
         navigate("/");
 
     };
-    const onImageChange = (e) => {
-          settweetpic(URL.createObjectURL(e.target.files[0]));
-          settweetimage(e.target.files[0])
-       }
+    
     return ( 
         <div className="h-screen bg-gre col-span-4 sm:col-span-3 lg:col-span-2 ">
         <Nav/>
