@@ -10,25 +10,7 @@ const Createpost = () => {
     const [tweetpic, settweetpic]= useState("");
     const navigate = useNavigate();
 
-    const handlesubmit = (e)=>{
-        e.preventDefault();
-        const formData = new FormData();
-        formData.append('tweetbody', tweetbody);
-        formData.append('dp', user?.dp);
-        formData.append('postpic', tweetimage);
-
-        fetch("/api/tweet", {
-            headers: {'authorization': `Bearer ${user?.token}`},
-            body:formData,
-            method:"POST"
-            })
-        .then((res)=>{console.log(res)})
-        .catch((err)=>{console.log(err)});
-        settweetbody("");
-        settweetimage("");
-        settweetpic("");
-        navigate("/");
-
+   
     };
     const onImageChange = (e) => {
           settweetpic(URL.createObjectURL(e.target.files[0]));
