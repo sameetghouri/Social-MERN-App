@@ -52,20 +52,7 @@ const TweetDetails = ({tweet, edit}) => {
       const json = await response.json()
       console.log(json)
     } 
-    const handledelete= async ()=>{
-        const response = await fetch('/api/tweet/'+tweet._id,{
-            method:'DELETE',
-            headers:{
-                'Authorization':`Bearer ${user.token}`}
-        })
-        const json = await response.json()
-        console.log(json)
-        if (response.ok){
-            dispatch(delete_tweet({tweetid:tweet._id}))
-        }  
-    }
-    
-    const openfun = ()=>{ setopen(!open) }
+   
 
 return ( 
   <div className="w-full bg-white shadow-sm rounded-2xl py-6 px-8 my-2 " >
