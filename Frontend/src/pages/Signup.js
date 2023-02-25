@@ -59,10 +59,6 @@ const Signup = () => {
         </div>
         <input onChange={e => setemail(e.target.value)} value={email} required className='block rounded border bg-gre p-2 my-2' type="email" placeholder='Email' />
         <input onChange={e => setpassword(e.target.value)} value={password} required className='block rounded border bg-gre p-2 my-2' type="password" placeholder='Password' />
-        {error && <div className="bg-red-200 text-red-700 p-4 text-center rounded-lg mt-3">{error}</div>}
-        <button  disabled={isLoading} className='block rounded-lg border bg-sky-400 px-10 py-2 mt-5 mb-4 cursor-pointer transform hover:scale-110 transition duration-100' type="submit">Sign Up</button>
-        {isLoading &&<div className="flex items-end justify-center ">
-        <span className=" animate-spin text-sky-500 "><BiLoaderAlt className="h-10 w-10" /></span></div>}
         </form>    
         </div>
         </div> 
