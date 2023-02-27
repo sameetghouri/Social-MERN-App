@@ -11,27 +11,7 @@ const user = useSelector((state)=>state?.counter?.user)
   const [isloading, setIsloading] = useState(true)
   const [error, setError] = useState(null)
   const dispatch = useDispatch()
-  useEffect(()=>{
-    const fetchTweets = async () =>{
-        const response = await fetch('/api/tweet',{
-            headers:{
-                'Authorization':`Bearer ${user.token}`
-            }
-        })
-        const json = await response.json()
-        if(!response.ok){
-            setError(json)
-            setIsloading(false)
-        }
-        if(response.ok){
-            setIsloading(false)
-            dispatch(set_tweets(json))           
-        }
-    }
-    if(user){
-        fetchTweets()
-    } 
-},[dispatch,user])
+  
 
 return ( 
         <div className="h-screen bg-gre col-span-4 sm:col-span-3 lg:col-span-2 ">
