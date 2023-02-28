@@ -11,7 +11,22 @@ const EditPost = () => {
     const [oldtweetpic, setoldtweetpic]= useState(null);
     const [newtweetpic, setnewtweetpic]= useState(null);
    const navigate = useNavigate();
-   
+    useEffect(()=>{
+        if(user)
+        {fetch(`/api/tweet/single/${id}`,{
+                headers:{
+                    'Authorization':`Bearer ${user?.token}`
+                }
+            })
+            .then((res)=>res.json())
+            .then((data)=>{
+                settweetbody(data.tweetbody);
+                setoldtweetpic(data.tweetimage);
+                
+            })
+            .catch((err)=>console.log(err))
+        }
+    },[user,id])
 
     const handleEdit =async (e)=>{
         e.preventDefault();
